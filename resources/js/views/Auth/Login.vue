@@ -20,16 +20,19 @@
                     <v-text-field
                         v-model="form.email"
                         label="آدرس ایمیل"
+                        type="email"
                         outlined
                         rounded
                         class="mt-9"
+                        :error-messages="errors.email"
                     ></v-text-field>
                     <v-text-field
                         v-model="form.password"
                         label="رمز عبور"
+                        type="password"
                         outlined
                         rounded
-                        class=""
+                        :error-messages="errors.password"
                     ></v-text-field>
                     <div class="d-flex justify-end">
                         <router-link :to="{name : '/'}" class="grey--text bod-2">فراموشی رمز عبور</router-link>
@@ -60,12 +63,20 @@ export default {
         form: {
             email: '',
             password: ''
+        },
+        errors: {
+            email: null,
+            password: null,
         }
     }),
-    methods : {
-      login(){
-          console.log("www")
-      }
+    methods: {
+        login() {
+            axios.post('/login', this.form)
+                .catch(error => {
+                    this.errors.email = error.response.data.errors.email[0]
+                    this.errors.password = error.response.data.errors.password[0]
+                })
+        }
     },
     components: {Logo}
 }

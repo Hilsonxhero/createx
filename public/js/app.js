@@ -2539,6 +2539,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Login",
@@ -2547,12 +2550,21 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         email: '',
         password: ''
+      },
+      errors: {
+        email: null,
+        password: null
       }
     };
   },
   methods: {
     login: function login() {
-      console.log("www");
+      var _this = this;
+
+      axios.post('/login', this.form)["catch"](function (error) {
+        _this.errors.email = error.response.data.errors.email[0];
+        _this.errors.password = error.response.data.errors.password[0];
+      });
     }
   },
   components: {
@@ -2573,7 +2585,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _components_Logo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/Logo */ "./resources/js/components/Logo.vue");
+/* harmony import */ var _components_Logo___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/Logo/ */ "./resources/js/components/Logo.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2624,10 +2655,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+var checkEMail = function checkEMail(value) {
+  return /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(value) || 'فرمت ایمیل نا معتبر';
+};
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Register",
+  data: function data() {
+    return {
+      form: {
+        email: '',
+        password: ''
+      },
+      loading: false,
+      checkEMail: checkEMail,
+      valid: true,
+      errors: {
+        email: null,
+        password: null
+      }
+    };
+  },
+  methods: {
+    register: function register() {
+      var _this = this;
+
+      if (this.valid) {
+        this.loading = true;
+        axios.post('/register', this.form)["catch"](function (error) {
+          _this.errors.email = error.response.data.errors.email[0];
+          _this.errors.password = error.response.data.errors.password[0];
+        })["finally"](function () {
+          return _this.loading = false;
+        });
+      }
+    },
+    required: function required(value) {
+      return !!value || 'این فیلد الزامی است';
+    },
+    emailRule: function emailRule() {
+      return function (value) {
+        return /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(value) || 'فرمت ایمیل نا معتبر';
+      };
+    }
+  },
   components: {
-    Logo: _components_Logo__WEBPACK_IMPORTED_MODULE_0__["default"]
+    Logo: _components_Logo___WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
@@ -3576,7 +3650,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.auth-bg-hui{\n    background-image: linear-gradient(to bottom right,#054592 0,#1897d4);\n    text-align: center;\n}\n.min-h-100vh{\n    min-height: 100vh;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.auth-bg-hui {\n    background-image: linear-gradient(to bottom right, #054592 0, #1897d4);\n    text-align: center;\n}\n.min-h-100vh {\n    min-height: 100vh;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -23487,7 +23561,13 @@ var render = function() {
                   _vm._v(" "),
                   _c("v-text-field", {
                     staticClass: "mt-9",
-                    attrs: { label: "آدرس ایمیل", outlined: "", rounded: "" },
+                    attrs: {
+                      label: "آدرس ایمیل",
+                      type: "email",
+                      outlined: "",
+                      rounded: "",
+                      "error-messages": _vm.errors.email
+                    },
                     model: {
                       value: _vm.form.email,
                       callback: function($$v) {
@@ -23498,7 +23578,13 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("v-text-field", {
-                    attrs: { label: "رمز عبور", outlined: "", rounded: "" },
+                    attrs: {
+                      label: "رمز عبور",
+                      type: "password",
+                      outlined: "",
+                      rounded: "",
+                      "error-messages": _vm.errors.password
+                    },
                     model: {
                       value: _vm.form.password,
                       callback: function($$v) {
@@ -23672,31 +23758,92 @@ var render = function() {
                     _vm._v("ایجاد حساب کاربری")
                   ]),
                   _vm._v(" "),
-                  _c("v-text-field", {
-                    staticClass: "mt-9",
-                    attrs: { label: "آدرس ایمیل", outlined: "", rounded: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("v-text-field", {
-                    attrs: { label: "رمز عبور", outlined: "", rounded: "" }
-                  }),
-                  _vm._v(" "),
                   _c(
-                    "div",
-                    { staticClass: "d-flex justify-end" },
+                    "v-form",
+                    {
+                      ref: "form",
+                      attrs: { "lazy-validation": "" },
+                      model: {
+                        value: _vm.valid,
+                        callback: function($$v) {
+                          _vm.valid = $$v
+                        },
+                        expression: "valid"
+                      }
+                    },
                     [
+                      _c("v-text-field", {
+                        staticClass: "mt-9",
+                        attrs: {
+                          "error-messages": _vm.errors.email,
+                          label: "آدرس ایمیل",
+                          outlined: "",
+                          rounded: "",
+                          rules: [_vm.checkEMail, _vm.required]
+                        },
+                        model: {
+                          value: _vm.form.email,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "email", $$v)
+                          },
+                          expression: "form.email"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        attrs: {
+                          "error-messages": _vm.errors.password,
+                          type: "password",
+                          label: "رمز عبور",
+                          outlined: "",
+                          rounded: "",
+                          rules: [
+                            function(value) {
+                              return (
+                                (value ? value.length >= 8 : false) ||
+                                "طول رمز عبور نباید کمتر از هشت کارکتر باشد"
+                              )
+                            }
+                          ]
+                        },
+                        model: {
+                          value: _vm.form.password,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "password", $$v)
+                          },
+                          expression: "form.password"
+                        }
+                      }),
+                      _vm._v(" "),
                       _c(
-                        "v-btn",
-                        { attrs: { color: "info", rounded: "" } },
+                        "div",
+                        { staticClass: "d-flex justify-end" },
                         [
-                          _vm._v(
-                            "\n                        ایجاد حساب کاربری\n                        "
-                          ),
-                          _c("v-icon", { staticClass: "mr-1" }, [
-                            _vm._v("mdi-chevron-left")
-                          ])
+                          [
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: {
+                                  color: "info",
+                                  rounded: "",
+                                  loading: _vm.loading,
+                                  disabled: !_vm.valid
+                                },
+                                on: { click: _vm.register }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                ایجاد حساب کاربری\n                                "
+                                ),
+                                _c("v-icon", { staticClass: "mr-1" }, [
+                                  _vm._v("mdi-chevron-left")
+                                ])
+                              ],
+                              1
+                            )
+                          ]
                         ],
-                        1
+                        2
                       )
                     ],
                     1
