@@ -1,0 +1,214 @@
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 900;
+    src: url('../fonts/iranSans/eot/IRANSansWeb_Black.eot');
+    src: url('../fonts/iranSans/eot/IRANSansWeb_Black.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+    url('../fonts/iranSans/woff2/IRANSansWeb_Black.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+    url('../fonts/iranSans/woff/IRANSansWeb_Black.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('../fonts/iranSans/ttf/IRANSansWeb_Black.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: bold;
+    src: url('../fonts/iranSans/eot/IRANSansWeb_Bold.eot');
+    src: url('../fonts/iranSans/eot/IRANSansWeb_Bold.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+    url('../fonts/iranSans/woff2/IRANSansWeb_Bold.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+    url('../fonts/iranSans/woff/IRANSansWeb_Bold.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('../fonts/iranSans/ttf/IRANSansWeb_Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 500;
+    src: url('../fonts/iranSans/eot/IRANSansWeb_Medium.eot');
+    src: url('../fonts/iranSans/eot/IRANSansWeb_Medium.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+    url('../fonts/iranSans/woff2/IRANSansWeb_Medium.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+    url('../fonts/iranSans/woff/IRANSansWeb_Medium.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('../fonts/iranSans/ttf/IRANSansWeb_Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/iranSans/eot/IRANSansWeb_Light.eot');
+    src: url('../fonts/iranSans/eot/IRANSansWeb_Light.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+    url('../fonts/iranSans/woff2/IRANSansWeb_Light.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+    url('../fonts/iranSans/woff/IRANSansWeb_Light.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('../fonts/iranSans/ttf/IRANSansWeb_Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 200;
+    src: url('../fonts/iranSans/eot/IRANSansWeb_UltraLight.eot');
+    src: url('../fonts/iranSans/eot/IRANSansWeb_UltraLight.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+    url('../fonts/iranSans/woff2/IRANSansWeb_UltraLight.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+    url('../fonts/iranSans/woff/IRANSansWeb_UltraLight.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('../fonts/iranSans/ttf/IRANSansWeb_UltraLight.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/iranSans/eot/IRANSansWeb.eot');
+    src: url('../fonts/iranSans/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+    url('../fonts/iranSans/woff2/IRANSansWeb.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+    url('../fonts/iranSans/woff/IRANSansWeb.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('../fonts/iranSans/ttf/IRANSansWeb.ttf') format('truetype');
+}
+
+.v-main__wrap {
+    /*border-radius: 2.5rem !important;*/
+    border-radius: 1.5rem !important;
+    background: #f5f8fa;
+    /*margin: 2rem;*/
+    margin: 1rem 1rem 0 1rem;
+}
+.theme--light.v-app-bar.v-toolbar.v-sheet {
+    background-color: #ffffff !important;
+}
+.theme--light.v-navigation-drawer:not(.v-navigation-drawer--floating) .v-navigation-drawer__border {
+    background-color: unset !important;
+}
+
+.v-navigation-drawer__content .v-list-item--link:before {
+    bottom: 0;
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    top: 50% !important;
+    transform: translateY(-50%);
+    right: 0 !important;
+    width: 5px;
+    background-color: #333333 !important;
+    height: 0;
+    transition: all .25s ease !important;
+    border-radius: 5px 0 0 5px;
+}
+
+.v-navigation-drawer__content .theme--light.v-list-item--active::before {
+    height: 38px;
+    opacity: unset !important;
+}
+
+/*.v-list-group.v-list-group--active > div:before {*/
+/*    content: unset !important;*/
+/*}*/
+
+.theme--light.v-list-item.v-list-item__content .v-list-item__title {
+    color: #e5e5e5 !important;
+}
+
+.theme--light.v-list-item--active .v-list-item__content .v-list-item__title {
+    color: #00a3ff !important;
+    font-weight: 600 !important;
+}
+
+.v-list .v-list-item--active .v-icon {
+    color: #00a3ff !important;
+}
+
+.v-application--is-rtl .v-list-item__action:first-child, .v-application--is-rtl .v-list-item__icon:first-child {
+    margin-left: 15px !important;
+}
+
+.theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
+    color: #2c3e50 !important;
+}
+
+.v-breadcrumbs {
+    padding: 18px 0 !important;
+}
+
+@media (max-width: 768px) {
+    .v-main__wrap {
+        border-radius: unset !important;
+        margin: unset !important;
+    }
+}
+
+.v-navigation-drawer__content .v-item-group .v-expansion-panel::before {
+    box-shadow: unset !important;
+}
+
+.v-navigation-drawer__content .v-item-group .v-expansion-panel:not(:first-child)::after {
+    border-top: unset !important;
+}
+
+.v-expansion-panel-content .v-expansion-panel-content__wrap .v-item-group .v-expansion-panel button {
+    padding: 16px 0 !important;
+}
+
+.v-navigation-drawer__content a {
+    color: #7e8299 !important;
+    text-decoration: none !important;
+}
+
+.v-application--is-rtl .v-list-group--no-action > .v-list-group__items > .v-list-item {
+    padding-right: 55px !important;
+}
+
+.v-list-group__items .v-list-item.v-list-item--active:before {
+    content: unset !important;
+}
+
+
+.container {
+    max-width: 1200px;
+}
+
+.container--fluid {
+    max-width: 100%;
+}
+
+body {
+    background: #333333 !important;
+}
+
+@media (min-width: 992px) {
+
+    div, ol, pre, span, ul {
+        scrollbar-width: thin;
+        scrollbar-color: #eff2f5 transparent
+    }
+
+    body::-webkit-scrollbar, div::-webkit-scrollbar, ol::-webkit-scrollbar, pre::-webkit-scrollbar, span::-webkit-scrollbar, ul::-webkit-scrollbar {
+        width: .300rem;
+        height: .4rem;
+    }
+
+    div::-webkit-scrollbar-thumb, ol::-webkit-scrollbar-thumb, pre::-webkit-scrollbar-thumb, span::-webkit-scrollbar-thumb, ul::-webkit-scrollbar-thumb {
+        background-color: #eff2f5
+
+    }
+
+    div, ol, pre, span, ul {
+        scrollbar-color: #e9edf1 transparent !important;
+
+    }
+
+    div:hover, ol:hover, pre:hover, span:hover, ul:hover {
+        scrollbar-color: #e9edf1 transparent
+    }
+
+    div:hover::-webkit-scrollbar-thumb, ol:hover::-webkit-scrollbar-thumb, pre:hover::-webkit-scrollbar-thumb, span:hover::-webkit-scrollbar-thumb, ul:hover::-webkit-scrollbar-thumb {
+        background-color: #e9edf1;
+
+    }
+}
+
+// Vuetify
+@import "~vuetify/dist/vuetify.min.css";
+@import "variables";
+
+
+
+
