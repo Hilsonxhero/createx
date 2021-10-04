@@ -16,32 +16,41 @@
 
                 <div class="w-100 mx-5">
                     <span class="blue--text font-weight-bold ">ورود به حساب کاربری</span>
+                    <v-form
+                        ref="form"
+                        lazy-validation
+                    >
 
-                    <v-text-field
-                        v-model="form.login"
-                        label="آدرس ایمیل"
-                        type="email"
-                        outlined
-                        rounded
-                        class="mt-9"
-                        :error-messages="errors.email"
-                    ></v-text-field>
-                    <v-text-field
-                        v-model="form.password"
-                        label="رمز عبور"
-                        type="password"
-                        outlined
-                        rounded
-                        :error-messages="errors.password"
-                    ></v-text-field>
-                    <div class="d-flex justify-end">
-                        <router-link :to="{name : '/'}" class="grey--text bod-2">فراموشی رمز عبور</router-link>
-                        <v-spacer></v-spacer>
-                        <v-btn color="info" rounded @click="login">
-                            ایجاد حساب کاربری
-                            <v-icon class="mr-1">mdi-chevron-left</v-icon>
-                        </v-btn>
-                    </div>
+                        <v-text-field
+                            v-model="form.login"
+                            label="آدرس ایمیل"
+                            type="email"
+                            outlined
+                            rounded
+                            class="mt-9"
+                            :error-messages="errors.email"
+                            :rules="[required,checkEMail]"
+                        ></v-text-field>
+                        <v-text-field
+                            v-model="form.password"
+                            label="رمز عبور"
+                            type="password"
+                            outlined
+                            rounded
+                            :error-messages="errors.password"
+                            :rules="[required,lessThan(3,'رمز عبور')]"
+                        ></v-text-field>
+                        <div class="d-flex justify-end">
+                            <router-link :to="{name : 'home'}" class="grey--text bod-2">فراموشی رمز عبور</router-link>
+                            <v-spacer></v-spacer>
+                            <v-btn color="info" rounded @click="login" :loading="loading">
+                                ایجاد حساب کاربری
+                                <v-icon class="mr-1">mdi-chevron-left</v-icon>
+                            </v-btn>
+                        </div>
+
+                    </v-form>
+
                     <div class="d-flex flex-column mt-9 gray--text text-center justify-center body-2">
                         <span class="my-2">ورود با اکانت <router-link class="my-2 error--text" :to="{name : 'login'}">گوگل</router-link></span>
                         <span class="my-2">ثبت نام به منزله موافقت با قوانین است</span>
@@ -67,18 +76,37 @@ export default {
         errors: {
             email: null,
             password: null,
-        }
+        },
+        loading : false
     }),
     methods: {
         login() {
-            axios.post('/login', this.form)
-                .then(()=>{
-                    this.$router.push({name : 'home'})
+            if (this.$refs.form.validate()){
+                this.loading = true
+                this.$store.dispatch('user/login', this.form)
+                    .then(() => {
+                        this.$router.push({name: 'home'})
+                    })
+                    .catch(error => {
+                        this.errors.email = error.response.data.errors.email[0]
+                        this.errors.password = error.response.data.errors.password[0]
+                    })
+                .finally(()=>{
+                    this.loading = false
                 })
-                .catch(error => {
-                    this.errors.email = error.response.data.errors.email[0]
-                    this.errors.password = error.response.data.errors.password[0]
-                })
+            }
+        },
+        required(value) {
+            return !!value || 'این فیلد الزامی است'
+        },
+        lessThan(length, field) {
+            return value => (value ? value.length >= length : false) || `فیلد ${field} نباید کمتر از ${length} کارکتر باشد`
+        },
+        moreThan(length, field) {
+            return value => (value ? value.length <= length : false) || `فیلد ${field} نباید بیشتر از ${length} کارکتر باشد`
+        },
+        checkEMail(value) {
+            return /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(value) || 'فرمت ایمیل نا معتبر'
         }
     },
     components: {Logo}

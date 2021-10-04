@@ -43,7 +43,7 @@
                         <div class="d-flex justify-end">
 
                             <template>
-                                <v-btn color="info" rounded @click="register" :loading="loading" :disabled="!valid">
+                                <v-btn color="info" rounded @click="register" large :loading="loading">
                                     ایجاد حساب کاربری
                                     <v-icon class="mr-1">mdi-chevron-left</v-icon>
                                 </v-btn>
@@ -65,9 +65,8 @@
 </template>
 
 <script>
-import {ref} from '@vue/composition-api'
-import Logo from "@/components/Logo/";
 
+import Logo from "@/components/Logo/";
 
 export default {
     name: "Register",
@@ -88,7 +87,7 @@ export default {
         register() {
             if (this.$refs.form.validate()) {
                 this.loading = true
-                axios.post('/register', this.form)
+                this.$store.dispatch('user/register', this.form)
                     .then(() => {
                         this.$router.push({name: 'home'})
                     })

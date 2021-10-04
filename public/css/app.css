@@ -191,6 +191,15 @@ body {
 .v-application [class*=body-], .v-application .v-application .caption {
   font-family: IRANSans, sans-serif !important;
 }
+.v-application [class*=title] {
+  font-family: IRANSans, sans-serif !important;
+}
+.v-application [class*=display-] {
+  font-family: IRANSans, sans-serif !important;
+}
+.v-application .caption {
+  font-family: IRANSans, sans-serif !important;
+}
 
 .v-btn {
   letter-spacing: 0 !important;

@@ -1,8 +1,8 @@
 <template>
 
-    <v-app-bar color="#fff"
-               flat
-               :height="$vuetify.breakpoint.smAndDown ? 80  : 160"
+    <v-app-bar
+        flat
+        :height="$vuetify.breakpoint.smAndDown ? 80  : 160"
     >
         <v-container fluid class="pa-0">
             <v-row>
@@ -109,6 +109,15 @@
                                                     پروفایل
                                                 </router-link>
                                             </v-list-item>
+                                            <v-list-item @click="changeTheme">
+                                                <div>حالت شب</div>
+                                                <v-spacer></v-spacer>
+                                                <v-switch
+
+                                                    v-model="$vuetify.theme.dark"
+                                                    inset
+                                                ></v-switch>
+                                            </v-list-item>
                                         </v-list>
                                     </v-card>
                                 </v-menu>
@@ -142,7 +151,7 @@
 
 <script>
 import Logo from "./Logo";
-import {mapState} from 'vuex'
+import {mapState,mapActions} from 'vuex'
 
 export default {
     name: "Navbar",
@@ -200,19 +209,37 @@ export default {
                 class: 'blue--text  text--lighten-4',
                 to: 'home'
             },
-        ]
+        ],
+
+
     }),
     computed: {
         ...mapState({
-            auth: state => state.isLoggedIn,
-            user: state => state.user
-        })
-    },
-    methods: {
-        logout() {
-            this.$store.dispatch('logout')
+            auth: state => state.user.isLoggedIn,
+            user: state => state.user.user
+        }),
+
+        switchTheme: {
+
+            get: function () {
+                return this.$vuetify.theme.dark
+
+            },
+
+            set: function (newValue) {
+                return this.$vuetify.theme.dark = newValue
+            }
         }
 
+    },
+
+    methods: {
+        ...mapActions('user',['logout']),
+
+        changeTheme() {
+            this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+            this.$vuetify.theme.dark ? localStorage.setItem('isDark', 1) : localStorage.removeItem('isDark')
+        }
     }
 }
 </script>

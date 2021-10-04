@@ -42,13 +42,29 @@ export default [
     {
         path : '/register',
         component : require('@/views/Auth/Register.vue/').default,
-        name : 'register'
+        name : 'register',
+        meta : {
+            guest : true
+        }
 
     },
     {
         path : '/login',
         component : require('@/views/Auth/Login.vue/').default,
-        name : 'login'
+        name : 'login',
+        meta : {
+            guest : true
+        }
+
+    },
+
+    {
+        path : '/auth/verify',
+        component : require('@/views/Auth/Verify.vue/').default,
+        name : 'auth-verify',
+        meta : {
+            auth : true
+        }
 
     },
     {

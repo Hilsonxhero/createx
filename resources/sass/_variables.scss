@@ -12,6 +12,16 @@ $font-family:IRANSans;
     [class*='body-'],.v-application .caption {
         font-family: $font-family, sans-serif !important;
     }
+    [class*='title'] {
+        font-family: $font-family, sans-serif !important;
+    }
+    [class*='display-'] {
+        font-family: $font-family, sans-serif !important;
+    }
+  .caption{
+      font-family: $font-family, sans-serif !important;
+  }
+
     font-family: $font-family, sans-serif !important;
 
 }

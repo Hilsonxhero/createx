@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Auth;
 
 use App\Models\User;
+use http\Client\Response;
+use http\Env\Request;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +41,7 @@ class LoginRequest extends FormRequest
     /**
      * Attempt to authenticate the request's credentials.
      *
-     * @return void
+     * @return \Illuminate\Http\Response
      *
      * @throws \Illuminate\Validation\ValidationException
      */
@@ -67,9 +69,12 @@ class LoginRequest extends FormRequest
             ]);
         }
 
+
+
         Auth::login($user,$this->boolean('remember'));
 
         RateLimiter::clear($this->throttleKey());
+
     }
 
     /**

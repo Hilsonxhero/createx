@@ -28,7 +28,7 @@ class RegisteredUserController extends Controller
      * Handle an incoming registration request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      *
      * @throws \Illuminate\Validation\ValidationException
      */
@@ -50,6 +50,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return $request->wantsJson() ? new \Illuminate\Http\Response(['data' => auth()->user()],200) :  redirect()->intended(RouteServiceProvider::HOME);
     }
 }
