@@ -18,7 +18,6 @@
                     <span class="blue--text font-weight-bold ">ایجاد حساب کاربری</span>
                     <v-form
                         ref="form"
-                        v-model="valid"
                         lazy-validation
                     >
                         <v-text-field
@@ -28,7 +27,8 @@
                             outlined
                             rounded
                             class="mt-9"
-                            :rules="[checkEMail,required]"
+                            :rules="[required,checkEMail]"
+
                         ></v-text-field>
                         <v-text-field
                             :error-messages="errors.password"
@@ -38,9 +38,7 @@
                             outlined
                             rounded
                             class=""
-                            :rules="[
-                  value => (value ?  value.length >= 8 : false) || 'طول رمز عبور نباید کمتر از هشت کارکتر باشد'
-              ]"
+                            :rules="[required,lessThan(3,'رمز عبور')]"
                         ></v-text-field>
                         <div class="d-flex justify-end">
 
@@ -67,19 +65,20 @@
 </template>
 
 <script>
+import {ref} from '@vue/composition-api'
 import Logo from "@/components/Logo/";
 
-const checkEMail = value => /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(value) || 'فرمت ایمیل نا معتبر'
+
 export default {
     name: "Register",
+    components: {Logo},
     data: () => ({
         form: {
-            email: '',
-            password: ''
+            email: null,
+            password: null
         },
+
         loading: false,
-        checkEMail,
-        valid: true,
         errors: {
             email: null,
             password: null,
@@ -87,10 +86,12 @@ export default {
     }),
     methods: {
         register() {
-
-            if (this.valid) {
+            if (this.$refs.form.validate()) {
                 this.loading = true
                 axios.post('/register', this.form)
+                    .then(() => {
+                        this.$router.push({name: 'home'})
+                    })
                     .catch(error => {
                         this.errors.email = error.response.data.errors.email[0]
                         this.errors.password = error.response.data.errors.password[0]
@@ -101,11 +102,17 @@ export default {
         required(value) {
             return !!value || 'این فیلد الزامی است'
         },
-        emailRule() {
-            return value => /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(value) || 'فرمت ایمیل نا معتبر'
+        lessThan(length, field) {
+            return value => (value ? value.length >= length : false) || `فیلد ${field} نباید کمتر از ${length} کارکتر باشد`
+        },
+        moreThan(length, field) {
+            return value => (value ? value.length <= length : false) || `فیلد ${field} نباید بیشتر از ${length} کارکتر باشد`
+        },
+        checkEMail(value) {
+            return /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(value) || 'فرمت ایمیل نا معتبر'
         }
-    },
-    components: {Logo}
+
+    }
 }
 </script>
 

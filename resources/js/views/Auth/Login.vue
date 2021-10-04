@@ -18,7 +18,7 @@
                     <span class="blue--text font-weight-bold ">ورود به حساب کاربری</span>
 
                     <v-text-field
-                        v-model="form.email"
+                        v-model="form.login"
                         label="آدرس ایمیل"
                         type="email"
                         outlined
@@ -61,7 +61,7 @@ export default {
     name: "Login",
     data: () => ({
         form: {
-            email: '',
+            login: '',
             password: ''
         },
         errors: {
@@ -72,6 +72,9 @@ export default {
     methods: {
         login() {
             axios.post('/login', this.form)
+                .then(()=>{
+                    this.$router.push({name : 'home'})
+                })
                 .catch(error => {
                     this.errors.email = error.response.data.errors.email[0]
                     this.errors.password = error.response.data.errors.password[0]

@@ -9,7 +9,7 @@
                 <v-container>
                     <v-row align="center">
                         <v-col cols="auto d-flex">
-                            <Logo />
+                            <Logo/>
                             <v-app-bar-nav-icon class="hidden-md-and-up"
                                                 @click="$emit('show-nav')"></v-app-bar-nav-icon>
 
@@ -39,23 +39,80 @@
                                     </v-btn>
                                 </v-list>
                             </v-menu>
-                            <v-btn
-                                text
-                                small
-                                color="primary"
-                                router
-                                :to="{name: 'login'}"
-                            >ورود
-                            </v-btn>
-                            <span>/</span>
-                            <v-btn
-                                text
-                                small
-                                color="primary"
-                                router
-                                :to="{name: 'register'}"
-                            >ثبت نام
-                            </v-btn>
+                            <template v-if="!auth">
+                                <v-btn
+                                    text
+                                    small
+                                    color="primary"
+                                    router
+                                    :to="{name: 'login'}"
+                                >ورود
+                                </v-btn>
+                                <span>/</span>
+                                <v-btn
+                                    text
+                                    small
+                                    color="primary"
+                                    router
+                                    :to="{name: 'register'}"
+                                >ثبت نام
+                                </v-btn>
+                            </template>
+                            <template v-else>
+                                <v-menu
+                                    offset-y
+                                    bottom
+                                    right
+                                    origin="center center"
+                                    transition="scale-transition"
+                                    :close-on-content-click="false"
+                                >
+                                    <template v-slot:activator="{on}">
+                                        <v-btn
+                                            v-on="on"
+                                            icon
+                                        >
+                                            <v-icon>mdi-account-circle</v-icon>
+                                        </v-btn>
+                                    </template>
+                                    <v-card>
+                                        <v-list>
+                                            <v-list-item>
+                                                <v-list-item-avatar>
+                                                    <img
+                                                        src="https://cdn.vuetifyjs.com/images/john.jpg"
+                                                        alt="John"
+                                                    >
+                                                </v-list-item-avatar>
+
+                                                <v-list-item-content>
+                                                    <v-list-item-title>{{ user.name }}</v-list-item-title>
+                                                    <v-list-item-subtitle>{{ user.email }}</v-list-item-subtitle>
+                                                </v-list-item-content>
+
+                                                <v-list-item-action>
+                                                    <v-btn
+                                                        icon
+                                                        @click="logout"
+                                                    >
+                                                        <v-icon>mdi-logout</v-icon>
+                                                    </v-btn>
+                                                </v-list-item-action>
+                                            </v-list-item>
+                                        </v-list>
+
+                                        <v-divider></v-divider>
+
+                                        <v-list>
+                                            <v-list-item>
+                                                <router-link :to="{name : 'home'}">
+                                                    پروفایل
+                                                </router-link>
+                                            </v-list-item>
+                                        </v-list>
+                                    </v-card>
+                                </v-menu>
+                            </template>
                         </v-col>
                     </v-row>
                 </v-container>
@@ -65,13 +122,14 @@
                     <v-container class="py-0">
                         <v-row>
                             <v-col cols="12" class="py-5 d-flex">
-                                    <div class="body-2 ml-4 t-header-link-hui"
-                                          v-for="item in items"
-                                          :key="item.text"
+                                <div class="body-2 ml-4 t-header-link-hui"
+                                     v-for="item in items"
+                                     :key="item.text"
 
-                                    >
-                                        <router-link :to="item.to"  :class="item.class">{{ item.text }}</router-link>
-                                    </div>
+                                >
+                                    <router-link :to="{name : item.to}" :class="item.class">{{ item.text }}
+                                    </router-link>
+                                </div>
                             </v-col>
                         </v-row>
                     </v-container>
@@ -84,6 +142,8 @@
 
 <script>
 import Logo from "./Logo";
+import {mapState} from 'vuex'
+
 export default {
     name: "Navbar",
     components: {Logo},
@@ -93,63 +153,76 @@ export default {
             {
                 text: 'جدیدترین پست‌ها',
                 class: 'blue--text text--lighten-4',
-                to: '/'
+                to: 'home'
             },
             {
                 text: 'پست‌های دوستان',
                 class: 'blue--text text--lighten-4',
-                to: '/'
+                to: 'home'
             },
             {
                 text: 'استارتاپ',
                 class: 'blue--text text--lighten-4',
-                to: '/'
+                to: 'home'
             },
             {
                 text: 'دلنوشته',
                 class: 'blue--text  text--lighten-4',
-                to: '/'
+                to: 'home'
             },
             {
                 text: 'زندگی',
                 class: 'blue--text  text--lighten-4',
-                to: '/'
+                to: 'home'
             },
             {
                 text: 'کتاب',
                 class: 'blue--text  text--lighten-4',
-                to: '/'
+                to: 'home'
             },
             {
                 text: 'برنامه نویسی',
                 class: 'blue--text  text--lighten-4',
-                to: '/'
+                to: 'home'
             },
             {
                 text: 'روانشناسی',
                 class: 'blue--text  text--lighten-4',
-                to: '/'
+                to: 'home'
             },
             {
                 text: 'حال خوبتو',
                 class: 'blue--text  text--lighten-4',
-                to: '/'
+                to: 'home'
             },
             {
                 text: 'با من تقسیم کن',
                 class: 'blue--text  text--lighten-4',
-                to: '/'
+                to: 'home'
             },
         ]
-    })
+    }),
+    computed: {
+        ...mapState({
+            auth: state => state.isLoggedIn,
+            user: state => state.user
+        })
+    },
+    methods: {
+        logout() {
+            this.$store.dispatch('logout')
+        }
+
+    }
 }
 </script>
 
 <style lang="scss">
-.t-header-link-hui a{
+.t-header-link-hui a {
     transition: color 250ms ease-in;
 }
-.t-header-link-hui a.blue--text.text--lighten-4:hover,.t-header-link-hui a.white--text:hover{
+
+.t-header-link-hui a.blue--text.text--lighten-4:hover, .t-header-link-hui a.white--text:hover {
     color: #ffffff !important;
 }
 

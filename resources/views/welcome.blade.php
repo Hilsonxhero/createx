@@ -398,8 +398,18 @@
 
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
+    @auth
+        <script>
+          window.user = {
+              name : '{{auth('sanctum')->user()->name}}',
+              email : '{{auth('sanctum')->user()->email}}'
+          }
+        </script>
+    @endauth
+
 </head>
 <body class="antialiased">
+
 <div id="app">
     <v-app>
         <router-view></router-view>

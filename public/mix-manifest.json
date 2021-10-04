@@ -1,9 +1,6 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/js/404.js": "/js/404.js",
     "/js/403.js": "/js/403.js",
-    "/js/dashboard.js": "/js/dashboard.js",
-    "/js/register.js": "/js/register.js",
-    "/js/login.js": "/js/login.js"
+    "/js/404.js": "/js/404.js",
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css"
 }
