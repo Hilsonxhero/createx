@@ -1,5 +1,6 @@
 <template>
     <div>
+        <verify-banner></verify-banner>
         <navbar @show-nav="drawer = true"></navbar>
         <navbar-drawer :drawer="drawer"></navbar-drawer>
         <router-view></router-view>
@@ -10,12 +11,13 @@
 
 import Navbar from "@/components/Navbar";
 import NavbarDrawer from "@/components/NavbarDrawer";
+import VerifyBanner from "../../components/VerifyBanner";
 export default {
     name: "App",
     data: () => ({
         drawer: false,
     }),
-    components: {NavbarDrawer, Navbar},
+    components: {VerifyBanner, NavbarDrawer, Navbar},
 }
 </script>
 

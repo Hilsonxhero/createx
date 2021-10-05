@@ -396,14 +396,14 @@
     </style>
 
 
-
     <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
     @auth
         <script>
-          window.user = {
-              name : '{{auth('sanctum')->user()->name}}',
-              email : '{{auth('sanctum')->user()->email}}'
-          }
+            window.user = {
+                name: '{{auth('sanctum')->user()->name}}',
+                email: '{{auth('sanctum')->user()->email}}',
+                isVerified: '{{auth('sanctum')->user()->email_verified_at == null ? 1 :2}}'
+            }
         </script>
     @endauth
 

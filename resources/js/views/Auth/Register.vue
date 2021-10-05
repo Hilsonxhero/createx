@@ -89,7 +89,7 @@ export default {
                 this.loading = true
                 this.$store.dispatch('user/register', this.form)
                     .then(() => {
-                        this.$router.push({name: 'home'})
+                        this.$router.push({name: 'auth-verify'})
                     })
                     .catch(error => {
                         this.errors.email = error.response.data.errors.email[0]

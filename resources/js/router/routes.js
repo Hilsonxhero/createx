@@ -68,6 +68,24 @@ export default [
 
     },
     {
+        path : '/reset/password',
+        component : require('@/views/Auth/ResetEmailPassword.vue/').default,
+        name : 'reset-email-password',
+        meta : {
+            guest : true
+        }
+
+    },
+    {
+        path : '/reset/password/:token',
+        component : require('@/views/Auth/ResetPassword.vue/').default,
+        name : 'reset-password',
+        meta : {
+            guest : true
+        }
+
+    },
+    {
         path: '/403',
         component: () => import(/* webpackChunkName: "403" */ '@/views/pages/AccessDenied/'),
     },

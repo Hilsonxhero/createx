@@ -12,50 +12,35 @@
                 <span class="white--text" :class="$vuetify.breakpoint.mdAndUp ? 'display-1 mt-4' : 'title'">اینجا هر کسی می‌تونه بنویسه!</span>
                 <span class="mt-7 font-weight-bold hidden-sm-and-down">همین حالا حساب کاربری خودت را بساز و دوران جدید وبلاگ نویسی را شروع کن.</span>
             </v-col>
-            <v-col cols="12" md="4" class="d-flex align-end">
+            <v-col cols="12" md="4" class="d-flex align-center">
 
                 <div class="w-100 mx-5">
-                    <span class="blue--text font-weight-bold ">ورود به حساب کاربری</span>
+                    <span class="blue--text font-weight-bold ">بازیابی رمز عبور</span>
                     <v-form
                         ref="form"
                         lazy-validation
                     >
-
                         <v-text-field
-                            v-model="form.login"
+                            :error-messages="errors.email"
+                            v-model="form.email"
                             label="آدرس ایمیل"
-                            type="email"
                             outlined
                             rounded
                             class="mt-9"
-                            :error-messages="errors.email"
                             :rules="[required,checkEMail]"
-                        ></v-text-field>
-                        <v-text-field
-                            v-model="form.password"
-                            label="رمز عبور"
-                            type="password"
-                            outlined
-                            rounded
-                            :error-messages="errors.password"
-                            :rules="[required,lessThan(3,'رمز عبور')]"
+
                         ></v-text-field>
                         <div class="d-flex justify-end">
-                            <router-link :to="{name : 'reset-email-password'}" class="grey--text bod-2">فراموشی رمز عبور</router-link>
-                            <v-spacer></v-spacer>
-                            <v-btn color="info" rounded @click="login" :loading="loading">
-                                ایجاد حساب کاربری
-                                <v-icon class="mr-1">mdi-chevron-left</v-icon>
-                            </v-btn>
+
+                            <template>
+                                <v-btn color="info" rounded @click="sendEmail" large :loading="loading">
+                                    بازیابی
+                                    <v-icon class="mr-1">mdi-chevron-left</v-icon>
+                                </v-btn>
+                            </template>
                         </div>
 
                     </v-form>
-
-                    <div class="d-flex flex-column mt-9 gray--text text-center justify-center body-2">
-                        <span class="my-2">ورود با اکانت <router-link class="my-2 error--text" :to="{name : 'login'}">گوگل</router-link></span>
-                        <span class="my-2">ثبت نام به منزله موافقت با قوانین است</span>
-                        <router-link class="my-2" :to="{name : 'register'}">رفتن به صفحه ثبت نام</router-link>
-                    </div>
                 </div>
 
             </v-col>
@@ -64,36 +49,37 @@
 </template>
 
 <script>
+
 import Logo from "@/components/Logo/";
 
 export default {
-    name: "Login",
+    name: "ResetEmailPassword",
+    components: {Logo},
     data: () => ({
         form: {
-            login: '',
-            password: ''
+            email: null
         },
+
+        loading: false,
         errors: {
             email: null,
             password: null,
-        },
-        loading : false
+        }
     }),
     methods: {
-        login() {
-            if (this.$refs.form.validate()){
+        sendEmail() {
+            if (this.$refs.form.validate()) {
                 this.loading = true
-                this.$store.dispatch('user/login', this.form)
-                    .then(() => {
-                        this.$router.push({name: 'home'})
+                axios.post('/api/forgot-password',this.form)
+                // this.$store.dispatch('user/register', this.form)
+                    .then((response) => {
+                        console.log(response)
                     })
                     .catch(error => {
                         this.errors.email = error.response.data.errors.email[0]
                         this.errors.password = error.response.data.errors.password[0]
                     })
-                .finally(()=>{
-                    this.loading = false
-                })
+                    .finally(() => this.loading = false)
             }
         },
         required(value) {
@@ -108,13 +94,19 @@ export default {
         checkEMail(value) {
             return /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(value) || 'فرمت ایمیل نا معتبر'
         }
-    },
-    components: {Logo}
+
+    }
 }
 </script>
 
 <style>
-.w-100 {
-    width: 100%;
+.auth-bg-hui {
+    background-image: linear-gradient(to bottom right, #054592 0, #1897d4);
+    text-align: center;
+
+}
+
+.min-h-100vh {
+    min-height: 100vh;
 }
 </style>

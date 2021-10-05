@@ -1,7 +1,7 @@
 export const namespaced = true
 export const state = () => ({
     user: window.user,
-    isLoggedIn: !!window.user
+    isLoggedIn: !!window.user,
 })
 export const mutations = {
     LOGOUT(state) {
@@ -14,7 +14,8 @@ export const mutations = {
         state.isLoggedIn = true
         state.user = {
             name: payload.name,
-            email: payload.email
+            email: payload.email,
+            isVerified: payload.email_verified_at == null ? 1 : 2,
         }
     }
     ,
@@ -23,7 +24,8 @@ export const mutations = {
         state.isLoggedIn = true
         state.user = {
             name: payload.name,
-            email: payload.email
+            email: payload.email,
+            isVerified: 1
         }
     }
 }
