@@ -65,6 +65,13 @@
     url('../fonts/iranSans/ttf/IRANSansWeb.ttf') format('truetype');
 }
 
+.v-banner__text {
+    line-height:unset !important;
+}
+.v-banner.v-sheet:not(.v-sheet--outlined):not(.v-sheet--shaped) .v-banner__wrapper {
+    border-bottom: unset !important;
+}
+
 .v-main__wrap {
     /*border-radius: 2.5rem !important;*/
     border-radius: 1.5rem !important;
@@ -179,8 +186,10 @@ body {
         scrollbar-width: thin;
         scrollbar-color: #eff2f5 transparent
     }
+    body::-webkit-scrollbar{
 
-    body::-webkit-scrollbar, div::-webkit-scrollbar, ol::-webkit-scrollbar, pre::-webkit-scrollbar, span::-webkit-scrollbar, ul::-webkit-scrollbar {
+    }
+    div::-webkit-scrollbar, ol::-webkit-scrollbar, pre::-webkit-scrollbar, span::-webkit-scrollbar, ul::-webkit-scrollbar {
         width: .300rem;
         height: .4rem;
     }

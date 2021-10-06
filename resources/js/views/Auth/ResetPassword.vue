@@ -102,10 +102,10 @@ export default {
         changePassword() {
             if (this.$refs.form.validate()) {
                 this.loading = true
-                axios.post('/api/reset-password',this.form)
-                // this.$store.dispatch('api/reset-password', this.form)
+                // axios.post('/api/reset-password',this.form)
+                this.$store.dispatch('user/resetPassword', this.form)
                     .then(() => {
-                        this.$router.push({name: 'login'})
+                        this.$router.push({name: 'home'})
                     })
                     .catch(error => {
                         this.errors.email = error.response.data.errors.email[0]

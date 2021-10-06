@@ -27,7 +27,7 @@ class RegisteredUserController extends Controller
     /**
      * Handle an incoming registration request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      *
      * @throws \Illuminate\Validation\ValidationException
@@ -39,9 +39,10 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', Rules\Password::defaults()],
         ]);
-
+        $name = Str::beforeLast($request->email, '@');
         $user = User::create([
-            'name' => Str::beforeLast($request->email,'@'),
+            'name' => $name,
+            'username' => $name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
@@ -50,6 +51,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return $request->wantsJson() ? new \Illuminate\Http\Response(['data' => auth()->user()],200) :  redirect()->intended(RouteServiceProvider::HOME);
+        return $request->wantsJson() ? new \Illuminate\Http\Response(['data' => auth()->user()], 200) : redirect()->intended(RouteServiceProvider::HOME);
     }
 }

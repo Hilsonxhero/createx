@@ -21,6 +21,7 @@
                         lazy-validation
                     >
                         <v-text-field
+                            type="email"
                             :error-messages="errors.email"
                             v-model="form.email"
                             label="آدرس ایمیل"

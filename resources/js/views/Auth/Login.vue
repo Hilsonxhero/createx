@@ -23,13 +23,13 @@
 
                         <v-text-field
                             v-model="form.login"
-                            label="آدرس ایمیل"
+                            label="آدری ایمیل یا شماره تلفن"
                             type="email"
                             outlined
                             rounded
                             class="mt-9"
                             :error-messages="errors.email"
-                            :rules="[required,checkEMail]"
+                            :rules="[required]"
                         ></v-text-field>
                         <v-text-field
                             v-model="form.password"

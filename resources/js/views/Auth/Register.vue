@@ -17,7 +17,7 @@
                 <div class="w-100 mx-5">
                     <span class="blue--text font-weight-bold ">ایجاد حساب کاربری</span>
                     <v-form
-                        ref="form"
+                        ref="registerForm"
                         lazy-validation
                     >
                         <v-text-field
@@ -27,7 +27,7 @@
                             outlined
                             rounded
                             class="mt-9"
-                            :rules="[required,checkEMail]"
+                            :rules="[verifyEmail()]"
 
                         ></v-text-field>
                         <v-text-field
@@ -38,7 +38,7 @@
                             outlined
                             rounded
                             class=""
-                            :rules="[required,lessThan(3,'رمز عبور')]"
+                            :rules="[moreThan(3,'رمز عبور')]"
                         ></v-text-field>
                         <div class="d-flex justify-end">
 
@@ -65,53 +65,24 @@
 </template>
 
 <script>
-
 import Logo from "@/components/Logo/";
+import {required, verifyEmail, lessThan, moreThan} from "@/rules";
+import {registerModule} from "@/modules/auth/register";
 
 export default {
+
     name: "Register",
     components: {Logo},
-    data: () => ({
-        form: {
-            email: null,
-            password: null
-        },
-
-        loading: false,
-        errors: {
-            email: null,
-            password: null,
+    setup() {
+        return {
+            required,
+            verifyEmail,
+            lessThan,
+            moreThan,
+            ...registerModule()
         }
-    }),
-    methods: {
-        register() {
-            if (this.$refs.form.validate()) {
-                this.loading = true
-                this.$store.dispatch('user/register', this.form)
-                    .then(() => {
-                        this.$router.push({name: 'auth-verify'})
-                    })
-                    .catch(error => {
-                        this.errors.email = error.response.data.errors.email[0]
-                        this.errors.password = error.response.data.errors.password[0]
-                    })
-                    .finally(() => this.loading = false)
-            }
-        },
-        required(value) {
-            return !!value || 'این فیلد الزامی است'
-        },
-        lessThan(length, field) {
-            return value => (value ? value.length >= length : false) || `فیلد ${field} نباید کمتر از ${length} کارکتر باشد`
-        },
-        moreThan(length, field) {
-            return value => (value ? value.length <= length : false) || `فیلد ${field} نباید بیشتر از ${length} کارکتر باشد`
-        },
-        checkEMail(value) {
-            return /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(value) || 'فرمت ایمیل نا معتبر'
-        }
+    },
 
-    }
 }
 </script>
 

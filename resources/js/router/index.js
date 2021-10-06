@@ -17,6 +17,9 @@ router.beforeEach((to, from, next) => {
     if (to.meta.auth && !store.state.user.isLoggedIn) {
         next({name: 'login'})
     }
+    if (to.meta.verified && store.state.user.user.isVerified !== 2) {
+        next({name: 'login'})
+    }
     next()
 })
 export default router

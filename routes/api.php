@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\UpdateProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,5 +35,9 @@ Route::post('/reset-password', [NewPasswordController::class, 'store'])
     ->middleware('guest')
     ->name('password.update');
 
+
+Route::patch('/profile', [UpdateProfileController::class, 'update'])
+    ->middleware('auth:sanctum')
+    ->name('profile.update');
 
 

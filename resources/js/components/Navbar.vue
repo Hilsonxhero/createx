@@ -23,7 +23,7 @@
                                     min-width="100%"
                             >
                                 <template v-slot:activator="{ on }">
-                                    <v-btn text @click="search = true">
+                                    <v-btn icon @click="search = true">
                                         <v-icon>mdi-magnify</v-icon>
                                     </v-btn>
                                 </template>
@@ -68,12 +68,10 @@
                                     :close-on-content-click="false"
                                 >
                                     <template v-slot:activator="{on}">
-                                        <v-btn
-                                            v-on="on"
-                                            icon
-                                        >
-                                            <v-icon>mdi-account-circle</v-icon>
-                                        </v-btn>
+                                        <v-avatar size="35px"  v-on="on">
+                                            <v-img src="/images/5.jpg"
+                                                   size="80px"></v-img>
+                                        </v-avatar>
                                     </template>
                                     <v-card>
                                         <v-list>
@@ -151,7 +149,7 @@
 
 <script>
 import Logo from "./Logo";
-import {mapState,mapActions} from 'vuex'
+import {mapState, mapActions} from 'vuex'
 
 export default {
     name: "Navbar",
@@ -234,7 +232,11 @@ export default {
     },
 
     methods: {
-        ...mapActions('user',['logout']),
+
+        logout() {
+            this.$store.dispatch('user/logout')
+                .then(() => this.$router.push({name: 'home'}))
+        },
 
         changeTheme() {
             this.$vuetify.theme.dark = !this.$vuetify.theme.dark

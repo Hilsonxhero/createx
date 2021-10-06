@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const namespaced = true
 export const state = () => ({
     user: window.user,
@@ -27,11 +29,22 @@ export const mutations = {
             email: payload.email,
             isVerified: 1
         }
-    }
+    },
+    RESET_PASSWORD(state, payload) {
+        state.isLoggedIn = true
+        state.user = {
+            name: payload.name,
+            email: payload.email,
+            isVerified: 1
+        }
+    },
+    // RESEND_VERIFY_EMAIL(state) {
+    //     state.user.isVerified = 1
+    // }
 }
 export const actions = {
     logout({commit}) {
-        axios.post('/logout')
+       return  axios.post('/logout')
             .then(() => {
                 commit('LOGOUT')
             })
@@ -49,6 +62,13 @@ export const actions = {
             .then(({data}) => {
                 commit('REGISTER', data.data)
             })
+    },
+    resetPassword({commit}, payload) {
+        return axios.post('/api/reset-password', payload)
+
+    },
+    resendVerifyEmail({commit}) {
+        return axios.post('/api/email/verification-notification')
     }
 }
 

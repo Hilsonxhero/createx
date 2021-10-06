@@ -22,6 +22,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'phone',
+        'profile',
+        'bio',
+        'username',
+        'email_on_follow',
+        'email_on_like',
+        'email_on_reply',
     ];
 
     /**
@@ -42,8 +49,17 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    protected $appends = [
+        'profile_src'
+    ];
+
     public function sendEmailVerificationNotification()
     {
         $this->notify(new \App\Notifications\VerifyEmail());
+    }
+
+    public function getProfileSrcAttribute()
+    {
+        return $this->profile ? '/profiles/' . $this->profile : null;
     }
 }
