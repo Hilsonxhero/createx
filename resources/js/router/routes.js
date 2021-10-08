@@ -3,29 +3,26 @@ export default [
     {
         path: '/dashboard',
         component: require('@/views/layout/AdminLayout.vue/').default,
-        children: [
-            {
-                path: '',
-                component: require('@/views/Admin/Dashboard.vue/').default,
-                name: 'dashboard'
+        children: [{
+            path: '',
+            component: require('@/views/Admin/Dashboard.vue/').default,
+            name: 'dashboard'
 
-            },
-        ]
+        }, ]
 
     },
 
     {
         path: '/',
         component: require('@/views/layout/App.vue').default,
-        children: [
-            {
+        children: [{
                 path: '',
                 component: require('@/views/Home.vue').default,
                 name: 'home'
 
             },
             {
-                path: '/post/:id',
+                path: '/posts/:id',
                 component: require('@/views/Post/Index.vue').default,
                 name: 'post-index'
 
@@ -34,6 +31,16 @@ export default [
                 path: '/posts/draft',
                 component: require('@/views/Post/MyPosts.vue').default,
                 name: 'my-post'
+
+            },
+            {
+                path: '/post/create',
+                component: require('@/views/Post/Create.vue').default,
+                name: 'post-create',
+                meta: {
+                    auth: true,
+                    verified: true
+                }
 
             },
 
@@ -110,11 +117,13 @@ export default [
     },
     {
         path: '/403',
-        component: () => import(/* webpackChunkName: "403" */ '@/views/pages/AccessDenied/'),
+        component: () =>
+            import ( /* webpackChunkName: "403" */ '@/views/pages/AccessDenied/'),
     },
     {
         path: '/404',
-        component: () => import(/* webpackChunkName: "404" */ '@/views/pages/NotFound/'),
+        component: () =>
+            import ( /* webpackChunkName: "404" */ '@/views/pages/NotFound/'),
     },
     {
         path: '/:match(.*)',

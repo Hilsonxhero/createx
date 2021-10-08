@@ -25,12 +25,12 @@ class ProfileRequest extends FormRequest
     {
         return [
             'name' => ['required'],
+            'username' => ['required',"unique:users,username,{$this->id}"],
             'email' => ['required',"unique:users,email,{$this->id}"],
             'password' => ['nullable'],
-            'phone' => ['required'],
+            'phone' => ['nullable'],
             'profile' => ['nullable'],
             'bio' => ['nullable'],
-            'username' => ['required'],
             'email_on_follow' => ['required'],
             'email_on_like' => ['required'],
             'email_on_reply' => ['required'],

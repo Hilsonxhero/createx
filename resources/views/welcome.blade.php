@@ -397,10 +397,17 @@
 
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
+   <script>
+       window.csrf_token = '{{csrf_token()}}'
+   </script>
     @auth
         <script>
+ 
             window.user = {
                 name: '{{auth('sanctum')->user()->name}}',
+                username: '{{auth('sanctum')->user()->username}}',
+                profile: '{{auth('sanctum')->user()->profile_src}}',
+                phone: '{{auth('sanctum')->user()->phone}}',
                 email: '{{auth('sanctum')->user()->email}}',
                 isVerified: {{auth('sanctum')->user()->email_verified_at == null ? 1 :2}}
             }

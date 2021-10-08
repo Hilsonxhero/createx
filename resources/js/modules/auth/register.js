@@ -25,6 +25,7 @@ export function registerModule() {
                     router.push({ name: 'auth-verify' })
                 })
                 .catch((error) => {
+
                     errors.value.email = error.response.data.errors.email[0];
                     errors.value.password = error.response.data.errors.password[0];
                 })

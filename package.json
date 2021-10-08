@@ -28,11 +28,24 @@
         "vue-template-compiler": "^2.6.14"
     },
     "dependencies": {
+        "@tiptap/extension-character-count": "^2.0.0-beta.13",
+        "@tiptap/extension-collaboration": "^2.0.0-beta.22",
+        "@tiptap/extension-collaboration-cursor": "^2.0.0-beta.22",
+        "@tiptap/extension-highlight": "^2.0.0-beta.21",
+        "@tiptap/extension-image": "^2.0.0-beta.15",
+        "@tiptap/extension-task-item": "^2.0.0-beta.18",
+        "@tiptap/extension-task-list": "^2.0.0-beta.17",
+        "@tiptap/starter-kit": "^2.0.0-beta.117",
+        "@tiptap/vue-2": "^2.0.0-beta.57",
         "@vue/composition-api": "^1.2.2",
         "material-design-icons-iconfont": "^6.1.0",
+        "remixicon": "^2.5.0",
         "vue": "^2.6.12",
         "vue-router": "^3.5.2",
+        "vue2-dropzone": "^3.6.0",
         "vuetify": "^2.5.9",
-        "vuex": "^3.6.2"
+        "vuex": "^3.6.2",
+        "y-protocols": "^1.0.1",
+        "yjs": "^13.3.2"
     }
 }

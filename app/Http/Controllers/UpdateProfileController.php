@@ -11,6 +11,7 @@ class UpdateProfileController extends Controller
 {
     public function update(ProfileRequest $request)
     {
+        
         $data = $request->only([
             'name', 'email', 'password', 'phone', 'profile', 'bio',
             'username', 'email_on_follow', 'email_on_like', 'email_on_reply',

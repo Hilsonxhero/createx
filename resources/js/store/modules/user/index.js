@@ -9,8 +9,7 @@ export const mutations = {
     LOGOUT(state) {
         state.isLoggedIn = false
         state.user = null
-    }
-    ,
+    },
 
     LOGIN(state, payload) {
         state.isLoggedIn = true
@@ -19,8 +18,7 @@ export const mutations = {
             email: payload.email,
             isVerified: payload.email_verified_at == null ? 1 : 2,
         }
-    }
-    ,
+    },
 
     REGISTER(state, payload) {
         state.isLoggedIn = true
@@ -38,38 +36,42 @@ export const mutations = {
             isVerified: 1
         }
     },
-    // RESEND_VERIFY_EMAIL(state) {
-    //     state.user.isVerified = 1
-    // }
+    UPDATE_PROFILE(state, payload) {
+        state.user = {
+            name: payload.name,
+            email: payload.email,
+            username: payload.username,
+            phone: payload.phone,
+        }
+    }
 }
 export const actions = {
-    logout({commit}) {
-       return  axios.post('/logout')
+    logout({ commit }) {
+        return axios.post('/logout')
             .then(() => {
                 commit('LOGOUT')
             })
-    }
-    ,
-    login({commit}, payload) {
+    },
+    login({ commit }, payload) {
         return axios.post('/login', payload)
-            .then(({data}) => {
+            .then(({ data }) => {
                 commit('LOGIN', data.data)
             })
-    }
-    ,
-    register({commit}, payload) {
+    },
+    register({ commit }, payload) {
         return axios.post('/register', payload)
-            .then(({data}) => {
+            .then(({ data }) => {
                 commit('REGISTER', data.data)
             })
     },
-    resetPassword({commit}, payload) {
+    resetPassword({ commit }, payload) {
         return axios.post('/api/reset-password', payload)
 
     },
-    resendVerifyEmail({commit}) {
+    resendVerifyEmail({ commit }) {
         return axios.post('/api/email/verification-notification')
+    },
+    updateProfile({ commit }, payload) {
+        commit('UPDATE_PROFILE', payload)
     }
 }
-
-
