@@ -12,7 +12,7 @@
             <v-container>
                 <v-row class="mt-5">
                     <v-col cols="12" md="8">
-                        <new-post v-for="item in 5" :key="item"></new-post>
+                    <new-post v-for="item in 5" :key="item"></new-post>
                     </v-col>
                     <v-col cols="4" class="hidden-sm-and-down">
                         <v-banner sticky>

@@ -157,7 +157,8 @@ export default {
     name: "Setting",
 
     setup() {
-       const loading = ref(false);
+        const profile = ref(null)
+        const loading = ref(false);
         const user = ref(null)
         const url = ref(process.env.MIX_APP_URL)
         const editing = ref({
@@ -181,8 +182,9 @@ export default {
         const update = () => {
             loading.value = true
             axios.patch('/api/profile', user.value)
-            .then(()=>{
-                store.dispatch('user/updateProfile',user.value)
+            .then(({data})=>{
+                console.log(data);
+                store.dispatch('user/updateProfile',data)
 
                 errors.value = {}
             })

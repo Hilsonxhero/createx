@@ -71,7 +71,8 @@ export default {
     data: () => ({
         form: {
             login: '',
-            password: ''
+            password: '',
+            remember : true
         },
         errors: {
             email: null,

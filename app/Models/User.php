@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Media;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -25,6 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone',
         'profile',
         'bio',
+        'thumb_id',
         'username',
         'email_on_follow',
         'email_on_like',
@@ -60,6 +62,19 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getProfileSrcAttribute()
     {
-        return $this->profile ? '/profiles/' . $this->profile : null;
+        if ($this->thumb) {
+            return '/profiles/' . $this->thumb->files['original'];
+        } else {
+            return asset('/images/5.jpg');
+        }
+    }
+
+    public function thumb()
+    {
+        return $this->belongsTo(Media::class, 'thumb_id');
+    }
+
+    public function drafts(){
+        return $this->hasMany(Draft::class);
     }
 }

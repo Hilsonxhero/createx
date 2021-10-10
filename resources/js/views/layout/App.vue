@@ -2,7 +2,7 @@
     <div>
         <verify-banner></verify-banner>
         <navbar @show-nav="drawer = true"></navbar>
-        <navbar-drawer :drawer="drawer"></navbar-drawer>
+        <navbar-drawer v-model="drawer"></navbar-drawer>
         <router-view></router-view>
     </div>
 </template>

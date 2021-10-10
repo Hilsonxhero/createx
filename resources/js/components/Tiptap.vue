@@ -31,6 +31,7 @@ import TaskList from '@tiptap/extension-task-list'
 import TaskItem from '@tiptap/extension-task-item'
 import Highlight from '@tiptap/extension-highlight'
 import CharacterCount from '@tiptap/extension-character-count'
+import Placeholder from '@tiptap/extension-placeholder'
 import Image from '@tiptap/extension-image'
 import MenuBar from './MenuBar.vue'
 import remixiconUrl from 'remixicon/fonts/remixicon.symbol.svg'
@@ -46,7 +47,7 @@ export default {
 
     props: {
     content :{
-      type : String
+     require : true
     }
   },
 
@@ -72,6 +73,12 @@ export default {
       extensions: [
         StarterKit.configure({
           history: true,
+        }),
+        Placeholder.configure({
+          emptyEditorClass: 'is-editor-empty',
+          emptyNodeClass: 'my-custom-is-empty-class',
+          placeholder: 'My Custom Placeholder',
+          
         }),
         Highlight,
         TaskList,
@@ -113,16 +120,17 @@ export default {
   max-height: 26rem;
   color: #0D0D0D;
   background-color: #FFF;
-  border: 3px solid #0D0D0D;
+  // border: 3px solid #0D0D0D;
   border-radius: 0.75rem;
 
   &__header {
     display: flex;
     align-items: center;
+    // justify-content: center;
     flex: 0 0 auto;
     flex-wrap: wrap;
     padding: 0.25rem;
-    border-bottom: 3px solid #0D0D0D;
+    // border-bottom: 3px solid #0D0D0D;
   }
 
   &__content {

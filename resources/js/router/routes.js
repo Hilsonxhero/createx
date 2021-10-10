@@ -34,6 +34,16 @@ export default [
 
             },
             {
+                path: '/drafts/:link',
+                component: require('@/views/Post/Create.vue').default,
+                name: 'update-draft',
+                meta: {
+                    auth: true,
+                    verified: true
+                }
+
+            },
+            {
                 path: '/post/create',
                 component: require('@/views/Post/Create.vue').default,
                 name: 'post-create',
@@ -124,6 +134,7 @@ export default [
         path: '/404',
         component: () =>
             import ( /* webpackChunkName: "404" */ '@/views/pages/NotFound/'),
+        name: 'not-found'
     },
     {
         path: '/:match(.*)',

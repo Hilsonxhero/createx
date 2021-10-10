@@ -5,7 +5,7 @@
                 <div class="d-flex align-center flex-row justify-between">
                     <div class="d-flex flex-row align-center">
                         <v-avatar @click="$refs.profile.click()">
-                            <v-img :src="user.profile || '/images/5.jpg'"
+                            <v-img :src="user.profile_src || '/images/5.jpg'"
                                    size="80px"></v-img>
                             <input type="file" class="d-none" ref="profile" @change="updateProfile">
                         </v-avatar>

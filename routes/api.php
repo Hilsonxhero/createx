@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Draft\DraftController;
 use App\Http\Controllers\Post\UploadPostImageController;
 use App\Http\Controllers\UpdateProfileController;
 use Illuminate\Http\Request;
@@ -31,10 +32,6 @@ Route::post('/reset-password', [NewPasswordController::class, 'store'])
     ->middleware('guest')
     ->name('password.update');
 
-
-
-
-
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/me', function (Request $request) {
@@ -42,9 +39,18 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     });
 
     Route::patch('/profile', [UpdateProfileController::class, 'update'])
-    ->name('profile.update');
+        ->name('profile.update');
 
     Route::post('/upload-post-img', [UploadPostImageController::class, 'upload'])
-    ->name('upload.post.img');
+        ->name('upload.post.img');
+
+    Route::post('/posts/create', [DraftController::class, 'store'])
+        ->name('posts.store');
+
+    Route::patch('/drafts/{draft}', [DraftController::class, 'update'])
+        ->name('posts.update');
+
+    Route::get('/drafts/{draft}', [DraftController::class, 'show'])
+        ->name('posts.show');
 
 });

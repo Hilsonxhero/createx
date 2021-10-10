@@ -68,17 +68,17 @@
                                     :close-on-content-click="false"
                                 >
                                     <template v-slot:activator="{on}">
-                                        <v-avatar size="35px"  v-on="on">
-                                            <v-img src="/images/5.jpg"
-                                                   size="80px"></v-img>
-                                        </v-avatar>
+                       
+                                        <v-btn icon>
+                                            <v-icon v-on="on">mdi-account-circle</v-icon>
+                                        </v-btn>
                                     </template>
                                     <v-card>
                                         <v-list>
                                             <v-list-item>
                                                 <v-list-item-avatar>
                                                     <img
-                                                        src="https://cdn.vuetifyjs.com/images/john.jpg"
+                                                        :src="user.profile_src"
                                                         alt="John"
                                                     >
                                                 </v-list-item-avatar>
@@ -103,12 +103,22 @@
 
                                         <v-list>
                                             <v-list-item>
-                                                <router-link :to="{name : 'home'}">
+                                                <router-link class="grey--text" :to="{name : 'profile'}">
                                                     پروفایل
                                                 </router-link>
                                             </v-list-item>
+                                            <v-list-item>
+                                                <router-link class="grey--text"  :to="{name : 'post-create'}">
+                                                    نوشتن پست جدید
+                                                </router-link>
+                                            </v-list-item>
+                                             <v-list-item>
+                                                <router-link class="grey--text"  :to="{name : 'profile-setting'}">
+                                                  تنظیمات حساب کاربری
+                                                </router-link>
+                                            </v-list-item>
                                             <v-list-item @click="changeTheme">
-                                                <div>حالت شب</div>
+                                                <div class="grey--text">حالت شب</div>
                                                 <v-spacer></v-spacer>
                                                 <v-switch
 

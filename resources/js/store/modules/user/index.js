@@ -37,11 +37,13 @@ export const mutations = {
         }
     },
     UPDATE_PROFILE(state, payload) {
+
         state.user = {
             name: payload.name,
             email: payload.email,
             username: payload.username,
             phone: payload.phone,
+            profile_src: payload.profile_src
         }
     }
 }
@@ -72,6 +74,7 @@ export const actions = {
         return axios.post('/api/email/verification-notification')
     },
     updateProfile({ commit }, payload) {
+
         commit('UPDATE_PROFILE', payload)
     }
 }

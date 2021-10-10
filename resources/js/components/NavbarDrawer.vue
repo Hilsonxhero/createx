@@ -3,7 +3,8 @@
         app
         temporary
         right
-        v-model="drawer"
+        :value="value"
+         @input="changeDrawer"
         :close-on-content-click="false"
 
     >
@@ -25,6 +26,7 @@
 <script>
 export default {
     name: "NavbarDrawer",
+    props : ['value'],
     data : ()=>({
         items: [
             {
@@ -69,7 +71,12 @@ export default {
             },
         ]
     }),
-    props : ['drawer']
+    methods :{
+     changeDrawer(event){
+      this.$emit('input',event)
+     }
+    },
+    
 }
 </script>
 

@@ -406,7 +406,7 @@
             window.user = {
                 name: '{{auth('sanctum')->user()->name}}',
                 username: '{{auth('sanctum')->user()->username}}',
-                profile: '{{auth('sanctum')->user()->profile_src}}',
+                profile_src: '{{auth('sanctum')->user()->profile_src}}',
                 phone: '{{auth('sanctum')->user()->phone}}',
                 email: '{{auth('sanctum')->user()->email}}',
                 isVerified: {{auth('sanctum')->user()->email_verified_at == null ? 1 :2}}
