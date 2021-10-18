@@ -6,6 +6,12 @@ Vue.use(VueCompositionAPI)
 import vuetify from "@/plugins/vuetify";
 import router from "@/router";
 import store from '@/store'
+import VueMeta from 'vue-meta'
+import VueClipboard from 'vue-clipboard2'
+
+Vue.use(VueMeta)
+
+Vue.use(VueClipboard)
 
 
 const app = new Vue({

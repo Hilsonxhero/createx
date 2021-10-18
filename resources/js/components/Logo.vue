@@ -1,5 +1,7 @@
 <template>
-  <v-img max-width="50" src="/images/vuedotjs.svg"></v-img>
+  <router-link :to="{name : 'home'}">
+    <v-img max-width="50" src="/images/vuedotjs.svg"></v-img>
+  </router-link>
 </template>
 
 <script>

@@ -6,19 +6,15 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "cviebrock/eloquent-sluggable": "^8.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "hekmatinasser/verta": "^1.12",
         "intervention/image": "^2.7",
         "laravel/framework": "^8.54",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5"
     },
-    "repositories": [{
-            "type": "path",
-            "url": "./modules/Media/"
-        }
-
-    ],
     "require-dev": {
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",

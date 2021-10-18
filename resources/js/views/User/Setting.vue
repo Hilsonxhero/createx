@@ -47,13 +47,15 @@
                     </div>
                     <div class="mt-8">
                         <div class="body-1 mb-3">نام</div>
-                        <v-text-field label="" :value="user.name" v-model="user.name" :rules="[required('نام کاربری الزامی است')]" 
-                        :error-messages="errors.name"></v-text-field>
+                        <v-text-field label="" :value="user.name" v-model="user.name"
+                                      :rules="[required('نام کاربری الزامی است')]"
+                                      :error-messages="errors.name"></v-text-field>
                     </div>
 
                     <div class="mt-8">
                         <div class="body-1 mb-3">توضیحات پروفایل</div>
-                        <v-textarea label="" :value="user.bio" v-model="user.bio" :error-messages="errors.bio"></v-textarea>
+                        <v-textarea label="" :value="user.bio" v-model="user.bio"
+                                    :error-messages="errors.bio"></v-textarea>
                     </div>
                 </aside>
                 <aside class="mt-8">
@@ -67,8 +69,10 @@
                                     ویرایش
                                 </v-btn>
                             </div>
-                            <v-text-field :prefix="url" v-model="user.username" class="ltr" :rules="[verifyUsername('فرمت نام کاربری نادرست است')]"
-                                          :disabled="!editing.username" :error-messages="errors.username"></v-text-field>
+                            <v-text-field :prefix="url" v-model="user.username" class="ltr"
+                                          :rules="[verifyUsername('فرمت نام کاربری نادرست است')]"
+                                          :disabled="!editing.username"
+                                          :error-messages="errors.username"></v-text-field>
                         </div>
                     </div>
                     <div class="d-flex flex-row my-10">
@@ -79,7 +83,8 @@
                                 <v-btn outlined rounded sm color="grey" @click="editing.email = !editing.email">ویرایش
                                 </v-btn>
                             </div>
-                            <v-text-field v-model="user.email" class="ltr" :disabled="!editing.email" :error-messages="errors.email"></v-text-field>
+                            <v-text-field v-model="user.email" class="ltr" :disabled="!editing.email"
+                                          :error-messages="errors.email"></v-text-field>
                             <!--                            <div>{{ user.email }}</div>-->
                         </div>
                     </div>
@@ -147,13 +152,13 @@
 
 import {ref, reactive, onMounted} from '@vue/composition-api'
 import uploadBase64 from "@/modules/file/uploadBase64";
-import {required, verifyEmail, lessThan, moreThan,verifyUsername} from "@/rules";
+import {required, verifyEmail, lessThan, moreThan, verifyUsername} from "@/rules";
 import router from "@/router";
 import store from '@/store';
 import Tiptap from '@/components/Tiptap.vue';
 
 export default {
-  components: { Tiptap },
+    components: {Tiptap},
     name: "Setting",
 
     setup() {
@@ -166,12 +171,12 @@ export default {
             email: false,
         })
         const errors = ref({
-        email: null,
-        password: null,
-        name: null,
-        username: null,
-        bio: null,
-    })
+            email: null,
+            password: null,
+            name: null,
+            username: null,
+            bio: null,
+        })
 
         const updateProfile = (event) => {
             user.value.profile_name = event.target.files[0].name
@@ -182,17 +187,17 @@ export default {
         const update = () => {
             loading.value = true
             axios.patch('/api/profile', user.value)
-            .then(({data})=>{
-                console.log(data);
-                store.dispatch('user/updateProfile',data)
+                .then(({data}) => {
+                    console.log(data);
+                    store.dispatch('user/updateProfile', data)
 
-                errors.value = {}
-            })
-                 .catch(({response}) => {
-                     for(const index in response.data.errors){
-                         errors.value[index] = response.data.errors[index][0]
-                     }
-         
+                    errors.value = {}
+                })
+                .catch(({response}) => {
+                    for (const index in response.data.errors) {
+                        errors.value[index] = response.data.errors[index][0]
+                    }
+
                 })
                 .finally(() => loading.value = false)
         }

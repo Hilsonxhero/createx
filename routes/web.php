@@ -5,8 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\ShortLinkPostController;
+
+Route::get('/link/{post:short_link}',ShortLinkPostController::class);
 
 Route::fallback(function () {
+//    dd(\Illuminate\Support\Facades\Redis::connection());
     return view('welcome');
 })->name('welcome');
 

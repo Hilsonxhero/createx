@@ -24,7 +24,7 @@
                             >
                                 <template v-slot:activator="{ on }">
                                     <v-btn icon @click="search = true">
-                                        <v-icon>mdi-magnify</v-icon>
+                                        <v-icon >mdi-magnify</v-icon>
                                     </v-btn>
                                 </template>
                                 <v-list class="d-flex flex-row align-center">
@@ -69,8 +69,8 @@
                                 >
                                     <template v-slot:activator="{on}">
                        
-                                        <v-btn icon>
-                                            <v-icon v-on="on">mdi-account-circle</v-icon>
+                                        <v-btn icon v-on="on">
+                                            <v-icon >mdi-account-circle</v-icon>
                                         </v-btn>
                                     </template>
                                     <v-card>
@@ -110,6 +110,12 @@
                                             <v-list-item>
                                                 <router-link class="grey--text"  :to="{name : 'post-create'}">
                                                     نوشتن پست جدید
+                                                </router-link>
+                                            </v-list-item>
+                                            <v-list-item>
+                                                <router-link class="grey--text"  :to="{name : 'my-post'}">
+
+                                                 پست ها و پیش نویس ها                                             
                                                 </router-link>
                                             </v-list-item>
                                              <v-list-item>

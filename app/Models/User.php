@@ -63,7 +63,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getProfileSrcAttribute()
     {
         if ($this->thumb) {
-            return '/profiles/' . $this->thumb->files['original'];
+            return '/storage/' . $this->thumb->files['original'];
         } else {
             return asset('/images/5.jpg');
         }
@@ -74,6 +74,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Media::class, 'thumb_id');
     }
 
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
     public function drafts(){
         return $this->hasMany(Draft::class);
     }

@@ -19,7 +19,8 @@ abstract class DefaultFileService
             if ($media->is_private) {
                 Storage::delete('private\\' . $file);
             } else {
-                unlink(public_path('profiles/') . $file);
+                Storage::delete('public\\' . $file);
+                // unlink(public_path('profiles/') . $file);
             }
 
         }

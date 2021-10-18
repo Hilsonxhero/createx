@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\DraftRequest;
 use App\Models\Draft;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class DraftController extends Controller
@@ -51,6 +52,15 @@ class DraftController extends Controller
         $this->authorize('show', $item);
       
         return $item;
+
+    }
+    public function destroy(Request $request, $draft){
+        $item = Draft::query()->where('link',$draft)->first();
+        $item->delete();
+
+        return response([
+            'data' => 'success'
+        ],200);
 
     }
 }

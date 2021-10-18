@@ -230,7 +230,8 @@ ul:hover::-webkit-scrollbar-thumb {
 .v-application [class*=text-] {
   font-family: IRANSans, sans-serif !important;
 }
-.v-application [class*=body-], .v-application .v-application .caption {
+.v-application [class*=body-],
+.v-application .v-application .caption {
   font-family: IRANSans, sans-serif !important;
 }
 .v-application [class*=title] {
@@ -245,5 +246,13 @@ ul:hover::-webkit-scrollbar-thumb {
 
 .v-btn {
   letter-spacing: 0 !important;
+}
+
+.v-card__title {
+  word-break: unset !important;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 

@@ -12,15 +12,8 @@ class ImageFileService extends DefaultFileService implements FileServiceContract
 
     public static function upload($file, string $filename, $dir, $ex): array
     {
-        // $ex = $file->getClientOriginalExtension();
-        // $file->move(storage_path($dir), $filename . '.' . $ex);
-        // $path = $dir . $filename . '.' . $ex;
-
-        $path = 'profiles/' . $filename . '.' . $ex;
-
-        Image::make($file)->fit(100)->save($path);
-
-        // return self::resize(storage_path($path), $filename, $dir, $ex);
+        $path = storage_path($dir) . $filename . '.' . $ex;
+        Image::make($file)->save($path);
         return ['original' => $filename . '.' . $ex];
     }
 
@@ -39,7 +32,7 @@ class ImageFileService extends DefaultFileService implements FileServiceContract
 
     public static function thumb(Media $media)
     {
-        return '/storage/' . $media->files[300];
+        return '/storage/' . $media->files['original'];
     }
 
     public static function getFileName()
