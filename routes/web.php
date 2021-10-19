@@ -10,7 +10,7 @@ use App\Http\Controllers\ShortLinkPostController;
 Route::get('/link/{post:short_link}',ShortLinkPostController::class);
 
 Route::fallback(function () {
-//    dd(\Illuminate\Support\Facades\Redis::connection());
+    \Illuminate\Support\Facades\Redis::connection();
     return view('welcome');
 })->name('welcome');
 

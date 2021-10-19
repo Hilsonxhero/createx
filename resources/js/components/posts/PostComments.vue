@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import {ref, watch, computed} from '@vue/composition-api'
+import {ref, watch, computed, onMounted} from '@vue/composition-api'
 
 export default {
     name: "PostComments",
@@ -87,6 +87,8 @@ export default {
             post_id: props.data.post_id,
             content: null
         })
+        const comment = ref(props.data)
+
         const saveReply = () => {
             axios.post(`/api/replies/${root.$route.params.slug}`, reply.value)
                 .then(() => {
@@ -106,11 +108,25 @@ export default {
             return root.$store.state.user.isLoggedIn && root.$store.state.user.user.id == props.data.user_id
         })
 
+        onMounted(()=>{
+
+            Echo.channel(`virgool_reply_${props.data.id}`)
+                .listen('.reply.created',({reply}) => {
+                    comment.value.replies.push(reply)
+                })
+
+            Echo.channel(`virgool_reply_${props.data.id}`)
+                .listen('CommentDeletedEvent',(event) => {
+                    comment.value.replies = comment.value.replies.filter(c => c.id !== event.comment.id)
+                })
+
+        })
+
 
         watch(
             () => reply.value.content,
             (value) => {
-                if (value.length > 5) {
+                if (reply.value.content && value.length > 5) {
                     disableBtn.value = true
                 } else {
                     disableBtn.value = false
@@ -123,7 +139,8 @@ export default {
             disableBtn,
             saveReply,
             deleteComment,
-            canShow
+            canShow,
+            comment
         }
     }
 }

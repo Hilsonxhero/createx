@@ -39,15 +39,24 @@
 
                         <div class="d-flex flex-row mt-9">
                             <span class="mx-2">
-                                <v-icon>mdi-heart-outline</v-icon>
-                                0
+                                <v-btn icon>
+                                   <v-icon>mdi-heart-outline</v-icon>
+                                </v-btn>
+
+                               <span class="grey--text">11</span>
                             </span>
                             <span class="mx-2">
-                                <v-icon>mdi-bookmark-outline</v-icon>
+                                <v-btn icon>
+                                  <v-icon>mdi-bookmark-outline</v-icon>
+                                </v-btn>
+
                             </span>
                             <span class="mx-2">
-                                <v-icon>mdi-comment-outline</v-icon>
-                                0
+
+                                <v-btn icon>
+                                    <v-icon>mdi-comment-outline</v-icon>
+                                </v-btn>
+                                <span class="grey--text">{{post.comments_count}}</span>
                             </span>
                             <v-spacer></v-spacer>
                             <v-icon>mdi-telegram</v-icon>
@@ -129,7 +138,7 @@
 </template>
 
 <script>
-import {ref, watch} from '@vue/composition-api'
+import {ref, watch, onMounted} from '@vue/composition-api'
 import PostComments from "@/components/posts/PostComments";
 
 export default {
@@ -145,6 +154,7 @@ export default {
             titleTemplate: ''
         }
     },
+
     setup(props, {root}) {
 
         const post = ref({})
@@ -166,7 +176,7 @@ export default {
         watch(
             () => comment.value.content,
             (value) => {
-                if (value.length > 5) {
+                if (comment.value.content && value.length > 5) {
                     disableBtn.value = true
                 } else {
                     disableBtn.value = false
@@ -183,8 +193,18 @@ export default {
                 short_link.value = `http://virgool.local/link/${data.post.short_link}`
                 comment.value.post_id = data.post.id
 
-            })
+                Echo.channel(`virgool_comment_${data.post.id}`)
+                    .listen('.comment.created', ({comment}) => {
+                        console.log(comment)
+                        post.value.parent_comments.push(comment)
+                    })
 
+                Echo.channel(`virgool_comment_${data.post.id}`)
+                    .listen('CommentDeletedEvent', ({comment}) => {
+                        post.value.parent_comments = post.value.parent_comments.filter(c => c.id !== comment.id)
+                    })
+
+            })
 
         return {
             post,
@@ -194,7 +214,7 @@ export default {
             disableBtn,
             saveComment
         }
-    }
+    },
 
 }
 </script>

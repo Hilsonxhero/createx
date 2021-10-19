@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Comment;
 
 use App\Events\CommentCreatedEvent;
+use App\Events\CommentDeletedEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Post;
@@ -24,9 +25,7 @@ class CommentController extends Controller
             'user_id' => $request->user()->id
         ]);
 
-        event(new CommentCreatedEvent(
-            $comment->load(['user', 'post', 'replies'])
-        ));
+        event(new CommentCreatedEvent($comment));
 
         return response([
             'data' => $comment
@@ -35,7 +34,11 @@ class CommentController extends Controller
 
     public function destroy(Comment $comment)
     {
+
+        event(new CommentDeletedEvent($comment));
+
         $comment->delete();
+
 
         return response([
             'data' => 'success'
