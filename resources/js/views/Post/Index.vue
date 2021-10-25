@@ -12,8 +12,17 @@
                         </v-list-item-avatar>
                         <v-list-item-content>
                             <v-list-item-title>
-                                {{ post.user.name }}
-                                <v-btn color="grey darken-2" rounded dark small>دنبال کنید</v-btn>
+                                <span>{{ post.user.name }}</span>
+                                <v-btn class="mr-4" :color="post.user.is_follow ? 'info' : 'grey'"
+                                       rounded
+                                       dark
+                                       small
+                                       @click="followUser"
+                                       v-if="$store.state.user.isLoggedIn && post.user.id != $store.state.user.user.id"
+                                >
+
+                                    {{ post.user.is_follow ? 'دنبال می کنید' : 'دنبال کنید' }}
+                                </v-btn>
                             </v-list-item-title>
                             <v-list-item-subtitle>
                                 {{ post.user.bio }}
@@ -39,15 +48,20 @@
 
                         <div class="d-flex flex-row mt-9">
                             <span class="mx-2">
-                                <v-btn icon>
-                                   <v-icon>mdi-heart-outline</v-icon>
+                                <v-btn icon @click="likePost">
+                                   <v-icon :class="{'red--text' : post.is_liked}">
+                                       {{ post.is_liked ? ' mdi-heart' : ' mdi-heart-outline' }}
+
+                                   </v-icon>
                                 </v-btn>
 
-                               <span class="grey--text">11</span>
+                               <span class="grey--text">{{ post.likes_count }}</span>
                             </span>
                             <span class="mx-2">
-                                <v-btn icon>
-                                  <v-icon>mdi-bookmark-outline</v-icon>
+                                <v-btn icon @click="bookmarkPost(post)">
+                                  <v-icon>
+                                      {{ post.is_bookmarked ? 'mdi-bookmark' : 'mdi-bookmark-outline' }}
+                                  </v-icon>
                                 </v-btn>
 
                             </span>
@@ -56,7 +70,7 @@
                                 <v-btn icon>
                                     <v-icon>mdi-comment-outline</v-icon>
                                 </v-btn>
-                                <span class="grey--text">{{post.comments_count}}</span>
+                                <span class="grey--text">{{ post.comments_count }}</span>
                             </span>
                             <v-spacer></v-spacer>
                             <v-icon>mdi-telegram</v-icon>
@@ -83,37 +97,46 @@
                         <p class="body-2 font-weight-bold">شاید از این نوشته‌ها هم خوشتان بیاید</p>
                         <v-container>
                             <v-row>
-                                <v-col cols="12" md="4" v-for="(post,index) in related_posts" :key="index">
-                                    <router-link :to="{name : 'post-show',params : {slug : post.slug}}">
-                                        <v-card>
-                                            <v-img height="160" max-height="160"
-                                                   :src="post.banner_src">
-                                            </v-img>
-                                            <v-card-title class="title body-1 card-title-ui">{{ post.title }}
+                                <v-col cols="12" md="4" v-for="(related_post,index) in related_posts" :key="index">
+
+                                    <v-card>
+                                        <v-img height="160" max-height="160"
+                                               :src="related_post.banner_src">
+                                        </v-img>
+                                        <router-link :to="{name : 'post-show',params : {slug : related_post.slug}}">
+                                            <v-card-title class="title body-1 card-title-ui">
+                                                {{ related_post.title }}
                                             </v-card-title>
-                                            <v-card-actions>
-                                                <div class="d-flex flex-row">
-                                                    <v-avatar size="45">
-                                                        <v-img
-                                                            :src="post.user.profile_src"></v-img>
-                                                    </v-avatar>
-                                                    <div class="mr-2">
-                                                        <span class="body-2">{{ post.user.name }}</span>
-                                                        <div class="caption">خواندن {{ post.min_read }} دقیقه</div>
-                                                    </div>
+                                        </router-link>
 
+                                        <v-card-actions>
+                                            <div class="d-flex flex-row">
+                                                <v-avatar size="45">
+                                                    <v-img
+                                                        :src="related_post.user.profile_src"></v-img>
+                                                </v-avatar>
+                                                <div class="mr-2">
+                                                    <router-link
+                                                        :to="{name : 'user-posts',params : {username : related_post.user.username}}">
+                                                        <span class="body-2">{{ related_post.user.name }}</span>
+                                                    </router-link>
+
+                                                    <div class="caption">خواندن {{ related_post.min_read }} دقیقه</div>
                                                 </div>
-                                                <v-spacer></v-spacer>
-                                                <v-btn
-                                                    icon
-                                                    color="grey"
-                                                >
-                                                    <v-icon>mdi-bookmark-outline</v-icon>
-                                                </v-btn>
 
-                                            </v-card-actions>
-                                        </v-card>
-                                    </router-link>
+                                            </div>
+                                            <v-spacer></v-spacer>
+                                            <v-btn icon @click="bookmarkPost(related_post)">
+                                                <v-icon>
+                                                    {{
+                                                        related_post.is_bookmarked ? 'mdi-bookmark' :
+                                                            'mdi-bookmark-outline'
+                                                    }}
+                                                </v-icon>
+                                            </v-btn>
+
+                                        </v-card-actions>
+                                    </v-card>
                                 </v-col>
                             </v-row>
                         </v-container>
@@ -157,6 +180,7 @@ export default {
 
     setup(props, {root}) {
 
+
         const post = ref({})
         const related_posts = ref({})
         const short_link = ref(null)
@@ -170,6 +194,32 @@ export default {
             axios.post(`/api/comments/${post.value.slug}`, comment.value)
                 .then((data) => {
                     comment.value.content = null
+                })
+        }
+
+        const bookmarkPost = (post) => {
+            post.is_bookmarked = !post.is_bookmarked
+            let reqType = post.is_bookmarked ? 'post' : 'delete'
+            axios[reqType](`/api/bookmarks/${post.slug}`)
+                .then((data) => {
+
+                })
+        }
+
+        const likePost = () => {
+            post.value.is_liked = !post.value.is_liked
+            let reqType = post.value.is_liked ? 'post' : 'delete'
+            axios[reqType](`/api/likes/${post.value.slug}`)
+                .then(() => {
+                    post.value.is_liked ? post.value.likes_count++ : post.value.likes_count--
+                })
+        }
+
+        const followUser = () => {
+
+            axios.post(`/api/follow/${post.value.user.username}`)
+                .then(() => {
+                    post.value.user.is_follow = !post.value.user.is_follow
                 })
         }
 
@@ -188,6 +238,7 @@ export default {
 
         axios.get(`/api/posts/${root.$route.params.slug}`)
             .then(({data}) => {
+
                 post.value = data.post
                 related_posts.value = data.related_posts
                 short_link.value = `http://virgool.local/link/${data.post.short_link}`
@@ -206,13 +257,18 @@ export default {
 
             })
 
+
+
         return {
             post,
             related_posts,
             short_link,
             comment,
             disableBtn,
-            saveComment
+            saveComment,
+            bookmarkPost,
+            likePost,
+            followUser
         }
     },
 

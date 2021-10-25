@@ -22,7 +22,7 @@ class ShowPostController extends Controller
 
         return response([
             'post' => $post->load(['user', 'categories','parentComments'])
-            ->loadCount('comments'),
+            ->loadCount(['comments','likes']),
             'related_posts' => $related_posts
         ], 200);
     }

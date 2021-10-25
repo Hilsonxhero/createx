@@ -7,6 +7,8 @@ use App\Events\CommentDeletedEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Notifications\PostCommentNotification;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -26,6 +28,9 @@ class CommentController extends Controller
         ]);
 
         event(new CommentCreatedEvent($comment));
+//        $post->user->notify(new PostCommentNotification($post));
+
+
 
         return response([
             'data' => $comment

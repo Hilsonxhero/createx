@@ -17,7 +17,9 @@ class Post extends Model
 
     protected $appends = [
         'banner_src',
-        'created_at'
+        'created_at',
+        'is_bookmarked',
+        'is_liked',
     ];
 
     public function getCreatedAtAttribute()
@@ -44,6 +46,31 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function bookmarks()
+    {
+        return $this->belongsToMany(User::class, 'bookmarks');
+    }
+
+
+    public function getIsBookmarkedAttribute()
+    {
+        return $this->bookmarks()
+            ->where('user_id', optional(request()->user())->id)
+            ->exists();
+    }
+
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'likes');
+    }
+
+    public function getIsLikedAttribute()
+    {
+        return $this->likes()
+            ->where('user_id', optional(request()->user())->id)
+            ->exists();
     }
 
     public function parentComments()

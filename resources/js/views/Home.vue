@@ -3,7 +3,7 @@
         <v-main>
             <v-container>
                 <v-row>
-                    <v-col :cols="post.col" v-for="(post,index) in posts" :key="index">
+                    <v-col :cols="post.col" v-for="(post,index) in posts2" :key="index">
                         <related-post :data="post"></related-post>
                     </v-col>
                 </v-row>
@@ -12,7 +12,7 @@
             <v-container>
                 <v-row class="mt-5">
                     <v-col cols="12" md="8">
-                    <new-post v-for="item in 5" :key="item"></new-post>
+                        <new-post v-for="(post,index) in posts.data" :key="index" :data="post"></new-post>
                     </v-col>
                     <v-col cols="4" class="hidden-sm-and-down">
                         <v-banner sticky>
@@ -35,12 +35,15 @@
 import RelatedPost from "@/components/posts/RelatedPost";
 import NewPost from "@/components/posts/NewPost";
 import PopularPosts from "@/components/posts/PopularPosts";
+import {ref} from '@vue/composition-api'
 
 export default {
     name: "Home",
-    data: () => ({
-        drawer: false,
-        posts: [
+    components: {PopularPosts, NewPost, RelatedPost},
+    setup() {
+        const drawer = ref(false)
+        const posts = ref({})
+        const posts2 = ref([
             {
                 col: 8,
                 title: 'چگونه یک VC را هک* کنیم؟',
@@ -81,9 +84,23 @@ export default {
                 },
                 created_at: " روز پیش"
             }
-        ]
-    }),
-    components: {PopularPosts, NewPost, RelatedPost},
+        ])
+
+        // created hook
+
+        axios.get('/api/home')
+        .then(({data})=>{
+            posts.value = data.posts
+        })
+
+        return {
+            drawer,
+            posts,
+            posts2
+        }
+    },
+
+
 }
 </script>
 

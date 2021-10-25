@@ -10,6 +10,7 @@ body *:not(html):not(style):not(br):not(tr):not(code) {
 
     /*font-family: IRANSans;*/
     position: relative;
+    direction: rtl;
 }
 
 body {
@@ -21,6 +22,7 @@ body {
     margin: 0;
     padding: 0;
     width: 100% !important;
+    direction: rtl;
     /*font-family: IRANSans,sans-serif !important;*/
 }
 

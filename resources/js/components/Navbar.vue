@@ -16,6 +16,9 @@
                         </v-col>
                         <v-spacer></v-spacer>
                         <v-col cols="auto">
+                            <v-btn icon @click="$emit('show-notification')">
+                                <v-icon>mdi-bell</v-icon>
+                            </v-btn>
                             <v-menu v-model="search"
                                     :close-on-content-click="false"
                                     absolute
@@ -24,7 +27,7 @@
                             >
                                 <template v-slot:activator="{ on }">
                                     <v-btn icon @click="search = true">
-                                        <v-icon >mdi-magnify</v-icon>
+                                        <v-icon>mdi-magnify</v-icon>
                                     </v-btn>
                                 </template>
                                 <v-list class="d-flex flex-row align-center">
@@ -68,9 +71,9 @@
                                     :close-on-content-click="false"
                                 >
                                     <template v-slot:activator="{on}">
-                       
+
                                         <v-btn icon v-on="on">
-                                            <v-icon >mdi-account-circle</v-icon>
+                                            <v-icon>mdi-account-circle</v-icon>
                                         </v-btn>
                                     </template>
                                     <v-card>
@@ -108,19 +111,19 @@
                                                 </router-link>
                                             </v-list-item>
                                             <v-list-item>
-                                                <router-link class="grey--text"  :to="{name : 'post-create'}">
+                                                <router-link class="grey--text" :to="{name : 'post-create'}">
                                                     نوشتن پست جدید
                                                 </router-link>
                                             </v-list-item>
                                             <v-list-item>
-                                                <router-link class="grey--text"  :to="{name : 'my-post'}">
+                                                <router-link class="grey--text" :to="{name : 'my-post'}">
 
-                                                 پست ها و پیش نویس ها                                             
+                                                    پست ها و پیش نویس ها
                                                 </router-link>
                                             </v-list-item>
-                                             <v-list-item>
-                                                <router-link class="grey--text"  :to="{name : 'profile-setting'}">
-                                                  تنظیمات حساب کاربری
+                                            <v-list-item>
+                                                <router-link class="grey--text" :to="{name : 'profile-setting'}">
+                                                    تنظیمات حساب کاربری
                                                 </router-link>
                                             </v-list-item>
                                             <v-list-item @click="changeTheme">
@@ -146,11 +149,11 @@
                         <v-row>
                             <v-col cols="12" class="py-5 d-flex">
                                 <div class="body-2 ml-4 t-header-link-hui"
-                                     v-for="item in items"
-                                     :key="item.text"
+                                     v-for="(category,index) in $store.state.category.categories"
+                                     :key="index"
 
                                 >
-                                    <router-link :to="{name : item.to}" :class="item.class">{{ item.text }}
+                                    <router-link :to="{name : 'post-category',params : {slug : category.slug}}" class="white--text">{{ category.title }}
                                     </router-link>
                                 </div>
                             </v-col>
@@ -172,60 +175,6 @@ export default {
     components: {Logo},
     data: () => ({
         search: false,
-        items: [
-            {
-                text: 'جدیدترین پست‌ها',
-                class: 'blue--text text--lighten-4',
-                to: 'home'
-            },
-            {
-                text: 'پست‌های دوستان',
-                class: 'blue--text text--lighten-4',
-                to: 'home'
-            },
-            {
-                text: 'استارتاپ',
-                class: 'blue--text text--lighten-4',
-                to: 'home'
-            },
-            {
-                text: 'دلنوشته',
-                class: 'blue--text  text--lighten-4',
-                to: 'home'
-            },
-            {
-                text: 'زندگی',
-                class: 'blue--text  text--lighten-4',
-                to: 'home'
-            },
-            {
-                text: 'کتاب',
-                class: 'blue--text  text--lighten-4',
-                to: 'home'
-            },
-            {
-                text: 'برنامه نویسی',
-                class: 'blue--text  text--lighten-4',
-                to: 'home'
-            },
-            {
-                text: 'روانشناسی',
-                class: 'blue--text  text--lighten-4',
-                to: 'home'
-            },
-            {
-                text: 'حال خوبتو',
-                class: 'blue--text  text--lighten-4',
-                to: 'home'
-            },
-            {
-                text: 'با من تقسیم کن',
-                class: 'blue--text  text--lighten-4',
-                to: 'home'
-            },
-        ],
-
-
     }),
     computed: {
         ...mapState({
@@ -258,7 +207,12 @@ export default {
             this.$vuetify.theme.dark = !this.$vuetify.theme.dark
             this.$vuetify.theme.dark ? localStorage.setItem('isDark', 1) : localStorage.removeItem('isDark')
         }
+    },
+
+    created() {
+        this.$store.dispatch('category/getNavbarCategories')
     }
+
 }
 </script>
 
@@ -279,6 +233,9 @@ ul li {
 
 ul li:first-child {
     margin-right: unset;
+}
+a{
+    text-decoration: none;
 }
 
 

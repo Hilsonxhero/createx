@@ -43,6 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
     ];
 
+
     /**
      * The attributes that should be cast.
      *
@@ -52,7 +53,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
     protected $appends = [
-        'profile_src'
+        'profile_src',
+        'is_follow'
     ];
 
     public function sendEmailVerificationNotification()
@@ -74,10 +76,38 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Media::class, 'thumb_id');
     }
 
-    public function posts(){
+    public function posts()
+    {
         return $this->hasMany(Post::class);
     }
-    public function drafts(){
+
+    public function drafts()
+    {
         return $this->hasMany(Draft::class);
+    }
+
+    public function follows()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_id');
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'following_id', 'user_id');
+    }
+
+    public function bookmarks()
+    {
+        return $this->belongsToMany(Post::class,'bookmarks');
+    }
+
+    public function likes()
+    {
+        return $this->belongsToMany(Post::class,'likes');
+    }
+
+    public function getIsFollowAttribute()
+    {
+        return $this->followers()->where('user_id', optional(request()->user())->id)->exists();
     }
 }

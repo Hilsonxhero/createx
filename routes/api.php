@@ -3,15 +3,22 @@
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Category\NavbarCategoryController;
 use App\Http\Controllers\Comment\CommentController;
 use App\Http\Controllers\Comment\ReplyController;
 use App\Http\Controllers\Draft\DraftController;
 use App\Http\Controllers\Post\AllUserDraftsController;
 use App\Http\Controllers\Post\AllUserPostsController;
+use App\Http\Controllers\Post\BookmarkController;
+use App\Http\Controllers\Post\LikeController;
+use App\Http\Controllers\Post\PostCategoryController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Post\ShowPostController;
 use App\Http\Controllers\Post\UploadPostImageController;
 use App\Http\Controllers\UpdateProfileController;
+use App\Http\Controllers\User\FollowController;
+use App\Http\Controllers\User\NotificationController;
+use App\Http\Controllers\User\UserPostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -86,6 +93,32 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/replies/{post:slug}', [ReplyController::class, 'store'])
         ->name('reply.store');
 
+    Route::post('/bookmarks/{post:slug}', [BookmarkController::class, 'store'])->name('bookmark.store');
+    Route::delete('/bookmarks/{post:slug}', [BookmarkController::class, 'destroy'])->name('bookmark.destroy');
+
+    Route::post('/likes/{post:slug}', [LikeController::class, 'store'])->name('like.store');
+    Route::delete('/likes/{post:slug}', [LikeController::class, 'destroy'])->name('like.destroy');
+
+    Route::post('/follow/{user:username}', FollowController::class)->name('follow');
+
+    Route::get('/user/notification', [NotificationController::class, 'index'])
+        ->name('notifications.index');
+
+
+    Route::patch('/user/notification/{notification}', [NotificationController::class, 'update'])
+        ->name('notifications.update');
+
+
+    Route::get('/navbar/categories', [NavbarCategoryController::class, 'index']);
+    Route::get('/user-posts/{user:username}', [UserPostController::class, 'index']);
+
+
+    Route::get('/bookmarked-posts', [\App\Http\Controllers\User\BookmarkedPostController::class, 'index']);
+    Route::get('/liked-posts', [\App\Http\Controllers\User\LikedPostController::class, 'index']);
+
+
+    Route::get('/home', [\App\Http\Controllers\HomePostController::class, 'index']);
+
 
     Route::post('/posts/all-posts', AllUserPostsController::class);
 
@@ -94,4 +127,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/posts/{post:slug}', ShowPostController::class);
 
 });
+
+Route::get('/posts/category/{category:slug}', [PostCategoryController::class, 'index']);
 

@@ -87,6 +87,12 @@ export default [
 
             },
 
+            {
+                path: '/posts/category/:slug',
+                component: require('@/views/Post/PostCategory.vue').default,
+                name: 'post-category',
+            },
+
 
 
             {
@@ -101,9 +107,38 @@ export default [
             },
 
             {
+                path: '/@:username',
+                component: require('@/views/User/UserPosts.vue').default,
+                name: 'user-posts',
+
+            },
+
+            {
                 path: '/me/setting',
                 component: require('@/views/User/Setting.vue').default,
                 name: 'profile-setting',
+                meta: {
+                    auth: true,
+                    verified: true
+                }
+
+            },
+
+            {
+                path: '/me/bookmarks',
+                component: require('@/views/User/UserBookmarkedPost.vue').default,
+                name: 'user-bookmarks',
+                meta: {
+                    auth: true,
+                    verified: true
+                }
+
+            },
+
+            {
+                path: '/me/likes',
+                component: require('@/views/User/UserLikedPost.vue').default,
+                name: 'user-likes',
                 meta: {
                     auth: true,
                     verified: true

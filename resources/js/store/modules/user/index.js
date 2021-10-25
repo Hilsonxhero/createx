@@ -14,6 +14,7 @@ export const mutations = {
     LOGIN(state, payload) {
         state.isLoggedIn = true
         state.user = {
+            id: payload.id,
             name: payload.name,
             email: payload.email,
             isVerified: payload.email_verified_at == null ? 1 : 2,
