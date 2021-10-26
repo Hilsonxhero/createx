@@ -15,8 +15,9 @@
             <v-list-item-group
                 active-class="deep-purple--text text--accent-4"
             >
-                <v-list-item v-for="(item,index) in items" :key="index">
-                    <v-list-item-title>{{item.text}}</v-list-item-title>
+                <v-list-item v-for="(category,index) in $store.state.category.categories" :key="index">
+                    <router-link :to="{name : 'post-category',params : {slug : category.slug}}" class="grey--text">{{ category.title }}
+                    </router-link>
                 </v-list-item>
             </v-list-item-group>
         </v-list>
@@ -76,7 +77,11 @@ export default {
       this.$emit('input',event)
      }
     },
-    
+
+    created() {
+        this.$store.dispatch('category/getNavbarCategories')
+    }
+
 }
 </script>
 

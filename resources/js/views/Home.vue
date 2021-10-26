@@ -16,12 +16,9 @@
                     </v-col>
                     <v-col cols="4" class="hidden-sm-and-down">
                         <v-banner sticky>
-                            <v-list>
-                                <v-subheader class="subtitle font-weight-bold">محبوب ترین ها</v-subheader>
-                                <v-list-item-group>
-                                    <popular-posts v-for="item in 5" :key="item"></popular-posts>
-                                </v-list-item-group>
-                            </v-list>
+
+                            <following-posts></following-posts>
+                            <popular-posts></popular-posts>
                         </v-banner>
                     </v-col>
                 </v-row>
@@ -36,10 +33,11 @@ import RelatedPost from "@/components/posts/RelatedPost";
 import NewPost from "@/components/posts/NewPost";
 import PopularPosts from "@/components/posts/PopularPosts";
 import {ref} from '@vue/composition-api'
+import FollowingPosts from "../components/posts/FollowingPosts";
 
 export default {
     name: "Home",
-    components: {PopularPosts, NewPost, RelatedPost},
+    components: {FollowingPosts, PopularPosts, NewPost, RelatedPost},
     setup() {
         const drawer = ref(false)
         const posts = ref({})
@@ -89,9 +87,9 @@ export default {
         // created hook
 
         axios.get('/api/home')
-        .then(({data})=>{
-            posts.value = data.posts
-        })
+            .then(({data}) => {
+                posts.value = data.posts
+            })
 
         return {
             drawer,

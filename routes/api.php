@@ -126,7 +126,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/posts/{post:slug}', ShowPostController::class);
 
+    Route::get('/following-posts', [\App\Http\Controllers\Post\FollowingPostController::class,'index']);
+
+    Route::get('/posts/category/{category:slug}', [PostCategoryController::class, 'index']);
+
 });
 
-Route::get('/posts/category/{category:slug}', [PostCategoryController::class, 'index']);
+
 
