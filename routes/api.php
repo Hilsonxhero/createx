@@ -45,7 +45,7 @@ Route::post('/reset-password', [NewPasswordController::class, 'store'])
     ->middleware('guest')
     ->name('password.update');
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::get('/me', function (Request $request) {
         return $request->user();
@@ -126,11 +126,17 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/posts/{post:slug}', ShowPostController::class);
 
-    Route::get('/following-posts', [\App\Http\Controllers\Post\FollowingPostController::class,'index']);
+    Route::get('/following-posts', [\App\Http\Controllers\Post\FollowingPostController::class, 'index']);
 
     Route::get('/posts/category/{category:slug}', [PostCategoryController::class, 'index']);
+
 
 });
 
 
+Route::get('/trending-posts', [\App\Http\Controllers\Post\TrendingPostController::class, 'index']);
 
+// search
+Route::get('/search/posts', [\App\Http\Controllers\Search\SearchPostController::class, 'index']);
+Route::get('/search/users', [\App\Http\Controllers\Search\SearchUserController::class, 'index']);
+Route::get('/search/categories', [\App\Http\Controllers\Search\SearchCategoryController::class, 'index']);

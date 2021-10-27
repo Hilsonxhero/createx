@@ -33,6 +33,8 @@
                                 <v-list class="d-flex flex-row align-center">
                                     <v-text-field class="mr-10"
                                                   placeholder="در بین مقالات، نویسندگان و… جستجو کنید"
+                                                  v-model="form"
+                                                  @keyup.enter="pushToSearch"
                                     ></v-text-field>
                                     <v-btn class="ml-10 title"
                                            text
@@ -153,7 +155,8 @@
                                      :key="index"
 
                                 >
-                                    <router-link :to="{name : 'post-category',params : {slug : category.slug}}" class="white--text">{{ category.title }}
+                                    <router-link :to="{name : 'post-category',params : {slug : category.slug}}"
+                                                 class="white--text">{{ category.title }}
                                     </router-link>
                                 </div>
                             </v-col>
@@ -175,6 +178,7 @@ export default {
     components: {Logo},
     data: () => ({
         search: false,
+        form: null
     }),
     computed: {
         ...mapState({
@@ -206,6 +210,9 @@ export default {
         changeTheme() {
             this.$vuetify.theme.dark = !this.$vuetify.theme.dark
             this.$vuetify.theme.dark ? localStorage.setItem('isDark', 1) : localStorage.removeItem('isDark')
+        },
+        pushToSearch() {
+            this.$router.push({name: 'search', params: {type: 'posts'}, query: {q: this.form}})
         }
     },
 
@@ -234,7 +241,8 @@ ul li {
 ul li:first-child {
     margin-right: unset;
 }
-a{
+
+a {
     text-decoration: none;
 }
 

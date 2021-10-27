@@ -145,6 +145,12 @@ export default [
                 }
 
             },
+
+            {
+                path: '/search/:type',
+                component: require('@/views/Search/Index.vue').default,
+                name: 'search',
+            },
         ]
 
     },
