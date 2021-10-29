@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -104,21 +105,16 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user/notification', [NotificationController::class, 'index'])
         ->name('notifications.index');
 
-
     Route::patch('/user/notification/{notification}', [NotificationController::class, 'update'])
         ->name('notifications.update');
-
 
     Route::get('/navbar/categories', [NavbarCategoryController::class, 'index']);
     Route::get('/user-posts/{user:username}', [UserPostController::class, 'index']);
 
-
     Route::get('/bookmarked-posts', [\App\Http\Controllers\User\BookmarkedPostController::class, 'index']);
     Route::get('/liked-posts', [\App\Http\Controllers\User\LikedPostController::class, 'index']);
 
-
     Route::get('/home', [\App\Http\Controllers\HomePostController::class, 'index']);
-
 
     Route::post('/posts/all-posts', AllUserPostsController::class);
 
@@ -130,9 +126,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::get('/posts/category/{category:slug}', [PostCategoryController::class, 'index']);
 
-
 });
-
 
 Route::get('/trending-posts', [\App\Http\Controllers\Post\TrendingPostController::class, 'index']);
 
@@ -140,3 +134,9 @@ Route::get('/trending-posts', [\App\Http\Controllers\Post\TrendingPostController
 Route::get('/search/posts', [\App\Http\Controllers\Search\SearchPostController::class, 'index']);
 Route::get('/search/users', [\App\Http\Controllers\Search\SearchUserController::class, 'index']);
 Route::get('/search/categories', [\App\Http\Controllers\Search\SearchCategoryController::class, 'index']);
+
+Route::prefix('admin')->middleware(['verified'])->group(function () {
+    Route::apiResource('users', UserController::class);
+    Route::post('users/destroy', [UserController::class, 'destroy']);
+    Route::post('users', [UserController::class, 'store']);
+});

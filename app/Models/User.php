@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Auth\Notifications\VerifyEmail;
+use App\Models\Media;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Media;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -43,6 +42,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
     ];
 
+    public static $FIELDS = [
+        'name' => 'نام',
+        'email' => 'ایمیل',
+        'username' => 'نام کاربری',
+        'created_at' => 'تاریخ عضویت',
+        'Actions' => 'actions',
+    ];
 
     /**
      * The attributes that should be cast.
@@ -54,8 +60,16 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
     protected $appends = [
         'profile_src',
-        'is_follow'
+        'is_follow',
+        'created_at',
     ];
+
+    public static function booted()
+    {
+        static::deleting(function ($user) {
+            $user->drafts()->delete();
+        });
+    }
 
     public function sendEmailVerificationNotification()
     {
@@ -69,6 +83,11 @@ class User extends Authenticatable implements MustVerifyEmail
         } else {
             return asset('/images/5.jpg');
         }
+    }
+
+    public function getCreatedAtAttribute()
+    {
+        return verta($this->attributes['created_at'])->format('Y-n-j');
     }
 
     public function thumb()
@@ -98,16 +117,17 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function bookmarks()
     {
-        return $this->belongsToMany(Post::class,'bookmarks');
+        return $this->belongsToMany(Post::class, 'bookmarks');
     }
 
     public function likes()
     {
-        return $this->belongsToMany(Post::class,'likes');
+        return $this->belongsToMany(Post::class, 'likes');
     }
 
     public function getIsFollowAttribute()
     {
         return $this->followers()->where('user_id', optional(request()->user())->id)->exists();
     }
+
 }

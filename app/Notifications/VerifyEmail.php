@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Carbon;
@@ -13,7 +12,7 @@ use Illuminate\Support\Facades\URL;
 
 class VerifyEmail extends Notification
 {
-//    use Queueable;
+    use Queueable;
     public static $createUrlCallback;
 
     public static $toMailCallback;
@@ -50,7 +49,6 @@ class VerifyEmail extends Notification
             ->line('چنانچه شما این اشتراک را ایجاد نکرده اید، نیاز به اقدام خاصی نیست.');
     }
 
-
     protected function verificationUrl($notifiable)
     {
         if (static::$createUrlCallback) {
@@ -71,6 +69,5 @@ class VerifyEmail extends Notification
     {
         static::$createUrlCallback = $callback;
     }
-
 
 }

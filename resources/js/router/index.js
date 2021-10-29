@@ -14,7 +14,7 @@ router.beforeEach((to, from, next) => {
     if (to.meta.guest && store.state.user.isLoggedIn) {
         next({name: 'home'})
     }
-    if (to.meta.auth && !store.state.user.isLoggedIn) {
+    if ((to.meta.auth || to.matched.some(parent => parent.meta.auth)) && !store.state.user.isLoggedIn) {
         next({name: 'login'})
     }
     if (to.meta.verified && store.state.user.user.isVerified !== 2) {

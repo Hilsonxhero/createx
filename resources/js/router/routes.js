@@ -3,12 +3,33 @@ export default [
     {
         path: '/dashboard',
         component: require('@/views/layout/AdminLayout.vue/').default,
-        children: [{
+        meta: {
+            auth: true,
+            verified: true
+        },
+        children: [
+            {
             path: '',
             component: require('@/views/Admin/Dashboard.vue/').default,
-            name: 'dashboard'
+            name: 'admin-dashboard'
 
-        }, ]
+           },
+           {
+            path: '/dashboard/users',
+            component: require('@/views/Admin/User/Users.vue/').default,
+            name: 'admin-users-index'
+           },
+           {
+            path: '/dashboard/users/create',
+            component: require('@/views/Admin/User/Create.vue/').default,
+            name: 'admin-users-create'
+           },
+           {
+            path: '/dashboard/categories',
+            component: require('@/views/Admin/Category/Categories.vue/').default,
+            name: 'admin-categories-index'
+           },
+     ]
 
     },
 
