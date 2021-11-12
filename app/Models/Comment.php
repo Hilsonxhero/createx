@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Traits\OrderableTrait;
+use App\Traits\SearchableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +15,15 @@ class Comment extends Model
         'created_at'
     ];
     use HasFactory;
+    use SearchableTrait;
+    use OrderableTrait;
+
+
+    public static $searchableFields = [
+        'content',
+        'post.title',
+        'user.name'
+    ];
 
     public function getCreatedAtAttribute()
     {

@@ -8,7 +8,7 @@
     <title>Laravel</title>
 
 
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
+    <link rel="stylesheet" href="{{ mix('css/app.css')  }}"/>
    <script>
        window.csrf_token = '{{csrf_token()}}'
    </script>

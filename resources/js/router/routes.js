@@ -1,234 +1,257 @@
 export default [
-
     {
-        path: '/dashboard',
-        component: require('@/views/layout/AdminLayout.vue/').default,
+        path: "/dashboard",
+        component: require("@/views/layout/AdminLayout.vue/").default,
         meta: {
             auth: true,
             verified: true
         },
         children: [
             {
-            path: '',
-            component: require('@/views/Admin/Dashboard.vue/').default,
-            name: 'admin-dashboard'
-
-           },
-           {
-            path: '/dashboard/users',
-            component: require('@/views/Admin/User/Users.vue/').default,
-            name: 'admin-users-index'
-           },
-           {
-            path: '/dashboard/users/create',
-            component: require('@/views/Admin/User/Create.vue/').default,
-            name: 'admin-users-create'
-           },
-           {
-            path: '/dashboard/categories',
-            component: require('@/views/Admin/Category/Categories.vue/').default,
-            name: 'admin-categories-index'
-           },
-     ]
-
-    },
-
-    {
-        path: '/',
-        component: require('@/views/layout/App.vue').default,
-        children: [{
-                path: '',
-                component: require('@/views/Home.vue').default,
-                name: 'home'
-
+                path: "",
+                component: require("@/views/Admin/Dashboard.vue/").default,
+                name: "admin-dashboard"
             },
             {
-                path: '/posts/:slug',
-                component: require('@/views/Post/Index.vue').default,
-                name: 'post-show'
-
+                path: "/dashboard/users",
+                component: require("@/views/Admin/User/Users.vue/").default,
+                name: "admin-users-index"
             },
             {
-                path: '/post/draft',
-                component: require('@/views/Post/MyPosts.vue').default,
-                name: 'my-post'
-
+                path: "/dashboard/users/create",
+                component: require("@/views/Admin/User/Create.vue/").default,
+                name: "admin-users-create"
             },
             {
-                path: '/drafts/:link',
-                component: require('@/views/Post/Create.vue').default,
-                name: 'update-draft',
-                meta: {
-                    auth: true,
-                    verified: true
-                }
-
+                path: "/dashboard/users/edit/:id",
+                component: require("@/views/Admin/User/Edit.vue/").default,
+                name: "admin-users-edit"
+            },
+            {
+                path: "/dashboard/categories",
+                component: require("@/views/Admin/Category/Index.vue/").default,
+                name: "admin-categories-index"
             },
 
             {
-                path: '/drafts/:link/save',
-                component: require('@/views/Post/SavePost.vue').default,
-                name: 'save-post',
-                meta: {
-                    auth: true,
-                    verified: true
-                }
-
+                path: "/dashboard/categories/create",
+                component: require("@/views/Admin/Category/Create.vue/")
+                    .default,
+                name: "admin-categories-create"
             },
             {
-                path: '/post/create',
-                component: require('@/views/Post/Create.vue').default,
-                name: 'post-create',
-                meta: {
-                    auth: true,
-                    verified: true
-                }
-
+                path: "/dashboard/categories/edit/:id",
+                component: require("@/views/Admin/Category/Edit.vue/").default,
+                name: "admin-categories-edit"
             },
 
             {
-                path: '/post/:slug/edit',
-                component: require('@/views/Post/Edit.vue').default,
-                name: 'edit-post',
-                meta: {
-                    auth: true,
-                    verified: true
-                }
-
+                path: "/dashboard/posts",
+                component: require("@/views/Admin/Post/Index.vue/").default,
+                name: "admin-posts-index"
+            },
+            {
+                path: "/dashboard/posts/edit/:id",
+                component: require("@/views/Admin/Post/Edit.vue/").default,
+                name: "admin-posts-edit"
             },
 
             {
-                path: '/post/:slug/update',
-                component: require('@/views/Post/UpdatePost.vue').default,
-                name: 'update-post',
-                meta: {
-                    auth: true,
-                    verified: true
-                }
-
+                path: "/dashboard/drafts",
+                component: require("@/views/Admin/Draft/Index.vue/").default,
+                name: "admin-drafts-index"
             },
-
             {
-                path: '/posts/category/:slug',
-                component: require('@/views/Post/PostCategory.vue').default,
-                name: 'post-category',
-            },
-
-
-
-            {
-                path: '/profile',
-                component: require('@/views/User/Profile.vue').default,
-                name: 'profile',
-                meta: {
-                    auth: true,
-                    verified: true
-                }
-
-            },
-
-            {
-                path: '/@:username',
-                component: require('@/views/User/UserPosts.vue').default,
-                name: 'user-posts',
-
-            },
-
-            {
-                path: '/me/setting',
-                component: require('@/views/User/Setting.vue').default,
-                name: 'profile-setting',
-                meta: {
-                    auth: true,
-                    verified: true
-                }
-
-            },
-
-            {
-                path: '/me/bookmarks',
-                component: require('@/views/User/UserBookmarkedPost.vue').default,
-                name: 'user-bookmarks',
-                meta: {
-                    auth: true,
-                    verified: true
-                }
-
-            },
-
-            {
-                path: '/me/likes',
-                component: require('@/views/User/UserLikedPost.vue').default,
-                name: 'user-likes',
-                meta: {
-                    auth: true,
-                    verified: true
-                }
-
-            },
-
-            {
-                path: '/search/:type',
-                component: require('@/views/Search/Index.vue').default,
-                name: 'search',
-            },
+                path: "/dashboard/comments",
+                component: require("@/views/Admin/Comment/Index.vue/").default,
+                name: "admin-comments-index"
+            }
         ]
-
     },
 
     {
-        path: '/register',
-        component: require('@/views/Auth/Register.vue/').default,
-        name: 'register',
-        meta: {
-            guest: true
-        }
+        path: "/",
+        component: require("@/views/layout/App.vue").default,
+        children: [
+            {
+                path: "",
+                component: require("@/views/Home.vue").default,
+                name: "home"
+            },
+            {
+                path: "/posts/:slug",
+                component: require("@/views/Post/Index.vue").default,
+                name: "post-show"
+            },
+            {
+                path: "/post/draft",
+                component: require("@/views/Post/MyPosts.vue").default,
+                name: "my-post"
+            },
+            {
+                path: "/drafts/:link",
+                component: require("@/views/Post/Create.vue").default,
+                name: "update-draft",
+                meta: {
+                    auth: true,
+                    verified: true
+                }
+            },
 
-    }, {
-        path: '/login',
-        component: require('@/views/Auth/Login.vue/').default,
-        name: 'login',
-        meta: {
-            guest: true
-        }
+            {
+                path: "/drafts/:link/save",
+                component: require("@/views/Post/SavePost.vue").default,
+                name: "save-post",
+                meta: {
+                    auth: true,
+                    verified: true
+                }
+            },
+            {
+                path: "/post/create",
+                component: require("@/views/Post/Create.vue").default,
+                name: "post-create",
+                meta: {
+                    auth: true,
+                    verified: true
+                }
+            },
 
+            {
+                path: "/post/:slug/edit",
+                component: require("@/views/Post/Edit.vue").default,
+                name: "edit-post",
+                meta: {
+                    auth: true,
+                    verified: true
+                }
+            },
+
+            {
+                path: "/post/:slug/update",
+                component: require("@/views/Post/UpdatePost.vue").default,
+                name: "update-post",
+                meta: {
+                    auth: true,
+                    verified: true
+                }
+            },
+
+            {
+                path: "/posts/category/:slug",
+                component: require("@/views/Post/PostCategory.vue").default,
+                name: "post-category"
+            },
+
+            {
+                path: "/profile",
+                component: require("@/views/User/Profile.vue").default,
+                name: "profile",
+                meta: {
+                    auth: true,
+                    verified: true
+                }
+            },
+
+            {
+                path: "/@:username",
+                component: require("@/views/User/UserPosts.vue").default,
+                name: "user-posts"
+            },
+
+            {
+                path: "/me/setting",
+                component: require("@/views/User/Setting.vue").default,
+                name: "profile-setting",
+                meta: {
+                    auth: true,
+                    verified: true
+                }
+            },
+
+            {
+                path: "/me/bookmarks",
+                component: require("@/views/User/UserBookmarkedPost.vue")
+                    .default,
+                name: "user-bookmarks",
+                meta: {
+                    auth: true,
+                    verified: true
+                }
+            },
+
+            {
+                path: "/me/likes",
+                component: require("@/views/User/UserLikedPost.vue").default,
+                name: "user-likes",
+                meta: {
+                    auth: true,
+                    verified: true
+                }
+            },
+
+            {
+                path: "/search/:type",
+                component: require("@/views/Search/Index.vue").default,
+                name: "search"
+            }
+        ]
     },
 
     {
-        path: '/auth/verify',
-        component: require('@/views/Auth/Verify.vue/').default,
-        name: 'auth-verify',
+        path: "/register",
+        component: require("@/views/Auth/Register.vue/").default,
+        name: "register",
+        meta: {
+            guest: true
+        }
+    },
+    {
+        path: "/login",
+        component: require("@/views/Auth/Login.vue/").default,
+        name: "login",
+        meta: {
+            guest: true
+        }
+    },
+
+    {
+        path: "/auth/verify",
+        component: require("@/views/Auth/Verify.vue/").default,
+        name: "auth-verify",
         meta: {
             auth: true
         }
-
-    }, {
-        path: '/reset/password',
-        component: require('@/views/Auth/ResetEmailPassword.vue/').default,
-        name: 'reset-email-password',
+    },
+    {
+        path: "/reset/password",
+        component: require("@/views/Auth/ResetEmailPassword.vue/").default,
+        name: "reset-email-password",
         meta: {
             guest: true
         }
-
-    }, {
-        path: '/reset/password/:token',
-        component: require('@/views/Auth/ResetPassword.vue/').default,
-        name: 'reset-password',
+    },
+    {
+        path: "/reset/password/:token",
+        component: require("@/views/Auth/ResetPassword.vue/").default,
+        name: "reset-password",
         meta: {
             guest: true
         }
-
-    }, {
-        path: '/403',
+    },
+    {
+        path: "/403",
         component: () =>
-            import ( /* webpackChunkName: "403" */ '@/views/pages/AccessDenied/'),
-    }, {
-        path: '/404',
+            import(/* webpackChunkName: "403" */ "@/views/pages/AccessDenied/")
+    },
+    {
+        path: "/404",
         component: () =>
-            import ( /* webpackChunkName: "404" */ '@/views/pages/NotFound/'),
-        name: 'not-found'
-    }, {
-        path: '/:match(.*)',
-        redirect: '/404'
+            import(/* webpackChunkName: "404" */ "@/views/pages/NotFound/"),
+        name: "not-found"
+    },
+    {
+        path: "/:match(.*)",
+        redirect: "/404"
     }
-]
+];

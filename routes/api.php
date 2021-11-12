@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CommentController as AdminCommentController;
+use App\Http\Controllers\Admin\DraftController as AdminDraftController;
+use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -135,8 +139,22 @@ Route::get('/search/posts', [\App\Http\Controllers\Search\SearchPostController::
 Route::get('/search/users', [\App\Http\Controllers\Search\SearchUserController::class, 'index']);
 Route::get('/search/categories', [\App\Http\Controllers\Search\SearchCategoryController::class, 'index']);
 
+// admin routes
 Route::prefix('admin')->middleware(['verified'])->group(function () {
+
     Route::apiResource('users', UserController::class);
     Route::post('users/destroy', [UserController::class, 'destroy']);
-    Route::post('users', [UserController::class, 'store']);
+
+    Route::apiResource('posts', AdminPostController::class);
+    Route::post('posts/destroy', [AdminPostController::class, 'destroy']);
+
+    Route::apiResource('categories', CategoryController::class);
+    Route::post('categories/destroy', [CategoryController::class, 'destroy']);
+
+    Route::apiResource('drafts', AdminDraftController::class);
+    Route::post('drafts/destroy', [AdminDraftController::class, 'destroy']);
+
+    Route::apiResource('comments', AdminCommentController::class);
+    Route::post('comments/destroy', [AdminCommentController::class, 'destroy']);
+
 });

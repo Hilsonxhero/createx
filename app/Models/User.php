@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Media;
+use App\Traits\OrderableTrait;
+use App\Traits\SearchableTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, OrderableTrait, SearchableTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -62,6 +64,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_src',
         'is_follow',
         'created_at',
+    ];
+
+    public static $searchableFields = [
+        'name', 'username', 'email', 'bio',
     ];
 
     public static function booted()

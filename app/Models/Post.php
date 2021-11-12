@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Traits\OrderableTrait;
+use App\Traits\SearchableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -14,12 +16,24 @@ class Post extends Model
 
     use Sluggable;
     use HasFactory;
+    use SearchableTrait;
+    use OrderableTrait;
 
     protected $appends = [
         'banner_src',
         'created_at',
         'is_bookmarked',
         'is_liked',
+    ];
+
+    public static $FIELDS = [
+        'title' => 'عنوان',
+    ];
+
+
+    public static $searchableFields = [
+        'title',
+        'user.name'
     ];
 
     public function getCreatedAtAttribute()
