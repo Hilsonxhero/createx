@@ -4,9 +4,9 @@ namespace App\Models;
 
 use App\Traits\OrderableTrait;
 use App\Traits\SearchableTrait;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Support\Str;
 
 class Post extends Model
@@ -30,17 +30,15 @@ class Post extends Model
         'title' => 'عنوان',
     ];
 
-
     public static $searchableFields = [
         'title',
-        'user.name'
+        'user.name',
     ];
 
     public function getCreatedAtAttribute()
     {
         return verta($this->attributes['created_at'])->formatDifference();
     }
-
 
     public function banner()
     {
@@ -67,6 +65,10 @@ class Post extends Model
         return $this->belongsToMany(User::class, 'bookmarks');
     }
 
+    public function featurePosts()
+    {
+        return $this->hasOne(FeaturePost::class);
+    }
 
     public function getIsBookmarkedAttribute()
     {
@@ -98,7 +100,6 @@ class Post extends Model
         return $this->categories->pluck('title');
     }
 
-
     public function getBannerSrcAttribute()
     {
         return $this->banner->thumb();
@@ -115,8 +116,8 @@ class Post extends Model
     {
         return [
             'slug' => [
-                'source' => 'title'
-            ]
+                'source' => 'title',
+            ],
         ];
     }
 }

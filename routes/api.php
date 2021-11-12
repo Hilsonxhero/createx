@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 use App\Http\Controllers\Admin\DraftController as AdminDraftController;
+use App\Http\Controllers\Admin\FeaturePostController;
+use App\Http\Controllers\Admin\FeaturePostSearchController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -156,5 +158,11 @@ Route::prefix('admin')->middleware(['verified'])->group(function () {
 
     Route::apiResource('comments', AdminCommentController::class);
     Route::post('comments/destroy', [AdminCommentController::class, 'destroy']);
+
+   // Feature Post
+    Route::get('feature-posts-search', [FeaturePostSearchController::class, 'index']);
+    Route::get('feature-post', [FeaturePostController::class, 'index']);
+    Route::post('feature-post/{post:slug}', [FeaturePostController::class, 'store']);
+    Route::delete('feature-post/{post:slug}', [FeaturePostController::class, 'destroy']);
 
 });
