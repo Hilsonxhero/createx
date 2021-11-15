@@ -34,28 +34,42 @@
                     <div class="my-10">
                         <div class="d-flex flex-row align-center">
                             <v-avatar @click="$refs.profile.click()">
-                                <v-img :src="user.profile_src || '/images/5.jpg'"
-                                       size="80px"></v-img>
-                                <input type="file" class="d-none" ref="profile" @change="updateProfile">
+                                <v-img
+                                    :src="user.profile_src || '/images/5.jpg'"
+                                    size="80px"
+                                ></v-img>
+                                <input
+                                    type="file"
+                                    class="d-none"
+                                    ref="profile"
+                                    @change="updateProfile"
+                                />
                             </v-avatar>
                             <div>
                                 <div class="mr-4 caption">{{ user.name }}</div>
                                 <div class="mr-4 caption">{{ user.email }}</div>
                             </div>
-
                         </div>
                     </div>
                     <div class="mt-8">
                         <div class="body-1 mb-3">نام</div>
-                        <v-text-field label="" :value="user.name" v-model="user.name"
-                                      :rules="[required('نام کاربری الزامی است')]"
-                                      :error-messages="errors.name"></v-text-field>
+                        <v-text-field
+                            label=""
+                            :value="user.name"
+                            v-model="user.name"
+                            :rules="[required('نام کاربری الزامی است')]"
+                            :error-messages="errors.name"
+                        ></v-text-field>
                     </div>
 
                     <div class="mt-8">
                         <div class="body-1 mb-3">توضیحات پروفایل</div>
-                        <v-textarea label="" :value="user.bio" v-model="user.bio"
-                                    :error-messages="errors.bio"></v-textarea>
+                        <v-textarea
+                            label=""
+                            :value="user.bio"
+                            v-model="user.bio"
+                            :error-messages="errors.bio"
+                        ></v-textarea>
                     </div>
                 </aside>
                 <aside class="mt-8">
@@ -65,14 +79,28 @@
                         <v-spacer></v-spacer>
                         <div class="w-50">
                             <div class="d-flex justify-end mb-4">
-                                <v-btn outlined rounded sm color="grey" @click="editing.username = !editing.username">
+                                <v-btn
+                                    outlined
+                                    rounded
+                                    sm
+                                    color="grey"
+                                    @click="
+                                        editing.username = !editing.username
+                                    "
+                                >
                                     ویرایش
                                 </v-btn>
                             </div>
-                            <v-text-field :prefix="url" v-model="user.username" class="ltr"
-                                          :rules="[verifyUsername('فرمت نام کاربری نادرست است')]"
-                                          :disabled="!editing.username"
-                                          :error-messages="errors.username"></v-text-field>
+                            <v-text-field
+                                :prefix="url"
+                                v-model="user.username"
+                                class="ltr"
+                                :rules="[
+                                    verifyUsername('فرمت نام کاربری نادرست است')
+                                ]"
+                                :disabled="!editing.username"
+                                :error-messages="errors.username"
+                            ></v-text-field>
                         </div>
                     </div>
                     <div class="d-flex flex-row my-10">
@@ -80,11 +108,21 @@
                         <v-spacer></v-spacer>
                         <div class="w-50">
                             <div class="d-flex justify-end mb-4">
-                                <v-btn outlined rounded sm color="grey" @click="editing.email = !editing.email">ویرایش
+                                <v-btn
+                                    outlined
+                                    rounded
+                                    sm
+                                    color="grey"
+                                    @click="editing.email = !editing.email"
+                                    >ویرایش
                                 </v-btn>
                             </div>
-                            <v-text-field v-model="user.email" class="ltr" :disabled="!editing.email"
-                                          :error-messages="errors.email"></v-text-field>
+                            <v-text-field
+                                v-model="user.email"
+                                class="ltr"
+                                :disabled="!editing.email"
+                                :error-messages="errors.email"
+                            ></v-text-field>
                             <!--                            <div>{{ user.email }}</div>-->
                         </div>
                     </div>
@@ -93,7 +131,9 @@
                         <v-spacer></v-spacer>
                         <div>
                             <div class="d-flex justify-end mb-4">
-                                <v-btn outlined rounded sm color="grey">ویرایش</v-btn>
+                                <v-btn outlined rounded sm color="grey"
+                                    >ویرایش</v-btn
+                                >
                             </div>
 
                             <div>{{ user.phone }}</div>
@@ -104,7 +144,9 @@
                         <v-spacer></v-spacer>
                         <div>
                             <div class="d-flex justify-end mb-4">
-                                <v-btn outlined rounded sm color="grey">ویرایش</v-btn>
+                                <v-btn outlined rounded sm color="grey"
+                                    >ویرایش</v-btn
+                                >
                             </div>
                         </div>
                     </div>
@@ -116,7 +158,10 @@
                         <v-spacer></v-spacer>
                         <div>
                             <div class="d-flex justify-end">
-                                <v-switch inset v-model="user.email_on_follow"></v-switch>
+                                <v-switch
+                                    inset
+                                    v-model="user.email_on_follow"
+                                ></v-switch>
                             </div>
                         </div>
                     </div>
@@ -125,7 +170,10 @@
                         <v-spacer></v-spacer>
                         <div>
                             <div class="d-flex justify-end">
-                                <v-switch v-model="user.email_on_reply" inset></v-switch>
+                                <v-switch
+                                    v-model="user.email_on_reply"
+                                    inset
+                                ></v-switch>
                             </div>
                         </div>
                     </div>
@@ -134,14 +182,24 @@
                         <v-spacer></v-spacer>
                         <div>
                             <div class="d-flex justify-end">
-                                <v-switch v-model="user.email_on_like" inset></v-switch>
+                                <v-switch
+                                    v-model="user.email_on_like"
+                                    inset
+                                ></v-switch>
                             </div>
                         </div>
                     </div>
                 </aside>
 
                 <div class="d-flex justify-end">
-                    <v-btn outlined rounded color="primary" @click="update" :loading="loading">ذخیره تغییرات</v-btn>
+                    <v-btn
+                        outlined
+                        rounded
+                        color="primary"
+                        @click="update"
+                        :loading="loading"
+                        >ذخیره تغییرات</v-btn
+                    >
                 </div>
             </v-col>
         </v-row>
@@ -149,65 +207,68 @@
 </template>
 
 <script>
-
-import {ref, reactive, onMounted} from '@vue/composition-api'
+import { ref, reactive, onMounted } from "@vue/composition-api";
 import uploadBase64 from "@/modules/file/uploadBase64";
-import {required, verifyEmail, lessThan, moreThan, verifyUsername} from "@/rules";
+import {
+    required,
+    verifyEmail,
+    lessThan,
+    moreThan,
+    verifyUsername
+} from "@/rules";
 import router from "@/router";
-import store from '@/store';
-import Tiptap from '@/components/Tiptap.vue';
+import store from "@/store";
+import Tiptap from "@/components/Tiptap.vue";
 
 export default {
-    components: {Tiptap},
+    components: { Tiptap },
     name: "Setting",
 
     setup() {
-        const profile = ref(null)
+        const profile = ref(null);
         const loading = ref(false);
-        const user = ref(null)
-        const url = ref(process.env.MIX_APP_URL)
+        const user = ref(null);
+        const url = ref(process.env.MIX_APP_URL);
         const editing = ref({
             username: false,
-            email: false,
-        })
+            email: false
+        });
         const errors = ref({
             email: null,
             password: null,
             name: null,
             username: null,
-            bio: null,
-        })
+            bio: null
+        });
 
-        const updateProfile = (event) => {
-            user.value.profile_name = event.target.files[0].name
-            user.value.profile_src = user.value.profile = uploadBase64(event)
-
-        }
+        const updateProfile = event => {
+            user.value.profile_name = event.target.files[0].name;
+            user.value.profile_src = user.value.profile = uploadBase64(event);
+        };
 
         const update = () => {
-            loading.value = true
-            axios.patch('/api/profile', user.value)
-                .then(({data}) => {
+            loading.value = true;
+            axios
+                .patch("/api/profile", user.value)
+                .then(({ data }) => {
                     console.log(data);
-                    store.dispatch('user/updateProfile', data)
+                    store.dispatch("user/updateProfile", data);
 
-                    errors.value = {}
+                    errors.value = {};
                 })
-                .catch(({response}) => {
+                .catch(({ response }) => {
                     for (const index in response.data.errors) {
-                        errors.value[index] = response.data.errors[index][0]
+                        errors.value[index] = response.data.errors[index][0];
                     }
-
                 })
-                .finally(() => loading.value = false)
-        }
+                .finally(() => (loading.value = false));
+        };
 
         onMounted(() => {
-            axios.get('/api/me')
-                .then(({data}) => {
-                    user.value = data
-                })
-        })
+            axios.get("/api/me").then(({ data }) => {
+                user.value = data;
+            });
+        });
 
         return {
             required,
@@ -222,21 +283,7 @@ export default {
             errors,
             loading,
             updateProfile
-        }
-    },
-}
+        };
+    }
+};
 </script>
-
-<style>
-.ltr {
-    direction: ltr;
-}
-
-.w-100 {
-    width: 100% !important;
-}
-
-.w-50 {
-    width: 50% !important;
-}
-</style>

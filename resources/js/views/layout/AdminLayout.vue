@@ -212,9 +212,3 @@ export default {
     }
 };
 </script>
-
-<style>
-/*.v-application {*/
-/*    font-family: IRANSans,sans-serif !important;*/
-/*}*/
-</style>

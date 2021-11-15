@@ -1,7 +1,10 @@
 <template>
     <div>
         <verify-banner></verify-banner>
-        <navbar @show-nav="drawer = true" @show-notification="showNotification = true"></navbar>
+        <navbar
+            @show-nav="drawer = true"
+            @show-notification="showNotification = true"
+        ></navbar>
         <navbar-drawer v-model="drawer"></navbar-drawer>
         <notification-drawer v-model="showNotification"></notification-drawer>
         <router-view></router-view>
@@ -9,7 +12,6 @@
 </template>
 
 <script>
-
 import Navbar from "@/components/Navbar";
 import NavbarDrawer from "@/components/NavbarDrawer";
 import VerifyBanner from "../../components/VerifyBanner";
@@ -18,12 +20,8 @@ export default {
     name: "App",
     data: () => ({
         drawer: false,
-        showNotification : false
+        showNotification: false
     }),
-    components: {NotificationDrawer, VerifyBanner, NavbarDrawer, Navbar},
-}
+    components: { NotificationDrawer, VerifyBanner, NavbarDrawer, Navbar }
+};
 </script>
-
-<style scoped>
-
-</style>

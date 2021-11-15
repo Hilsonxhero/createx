@@ -6,7 +6,7 @@
     </template>
 <slot name="image"></slot>
 
- 
+
   </div>
 </template>
 
@@ -163,13 +163,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss">
-.divider {
-  width: 2px;
-  height: 1.25rem;
-  background-color: rgba(#000, 0.1);
-  margin-left: 0.5rem;
-  margin-right: 0.75rem;
-}
-</style>

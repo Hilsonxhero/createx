@@ -8,7 +8,9 @@
                     </v-list-item-avatar>
                     <v-list-item-content>
                         <div>{{ data.user.name }}</div>
-                        <div class="caption text--grey">{{ data.created_at }}</div>
+                        <div class="caption text--grey">
+                            {{ data.created_at }}
+                        </div>
                     </v-list-item-content>
                 </v-list-item>
                 <v-spacer></v-spacer>
@@ -19,7 +21,6 @@
                         class="ml-1"
                         v-if="canShow"
                         @click="deleteComment"
-
                     >
                         <v-icon>mdi-delete</v-icon>
                     </v-btn>
@@ -49,27 +50,37 @@
                     </v-list-item>
                 </div>
                 <v-list-item>
-                    <v-textarea placeholder="پاسخ خود را بنویسید .." v-model="reply.content"></v-textarea>
+                    <v-textarea
+                        placeholder="پاسخ خود را بنویسید .."
+                        v-model="reply.content"
+                    ></v-textarea>
                 </v-list-item>
                 <div class="d-flex justify-end ml-5 my-3">
-                    <v-btn rounded color="primary" outlined large @click="saveReply" :disabled="!disableBtn">ارسال
-                        پاسخ
+                    <v-btn
+                        rounded
+                        color="primary"
+                        outlined
+                        large
+                        @click="saveReply"
+                        :disabled="!disableBtn"
+                        >ارسال پاسخ
                     </v-btn>
                 </div>
-
             </div>
-
         </v-card>
 
-        <post-comments v-for="comment in data.replies" :key="comment.id" :data="comment"
-                       style="border-right: 2px solid red">
-
+        <post-comments
+            v-for="comment in data.replies"
+            :key="comment.id"
+            :data="comment"
+            style="border-right: 2px solid red"
+        >
         </post-comments>
     </div>
 </template>
 
 <script>
-import {ref, watch, computed, onMounted} from '@vue/composition-api'
+import { ref, watch, computed, onMounted } from "@vue/composition-api";
 
 export default {
     name: "PostComments",
@@ -79,60 +90,64 @@ export default {
         }
     },
 
-    setup(props, {root}) {
-        const showReply = ref(false)
-        const disableBtn = ref(false)
+    setup(props, { root }) {
+        const showReply = ref(false);
+        const disableBtn = ref(false);
         const reply = ref({
             comment_id: props.data.id,
             post_id: props.data.post_id,
             content: null
-        })
-        const comment = ref(props.data)
+        });
+        const comment = ref(props.data);
 
         const saveReply = () => {
-            axios.post(`/api/replies/${root.$route.params.slug}`, reply.value)
+            axios
+                .post(`/api/replies/${root.$route.params.slug}`, reply.value)
                 .then(() => {
-                    showReply.value = false
-                    reply.value.content = null
-                })
-        }
+                    showReply.value = false;
+                    reply.value.content = null;
+                });
+        };
 
         const deleteComment = () => {
-            axios.delete(`/api/comments/${props.data.id}`)
-                .then(() => {
-
-                })
-        }
+            axios.delete(`/api/comments/${props.data.id}`).then(() => {});
+        };
 
         const canShow = computed(() => {
-            return root.$store.state.user.isLoggedIn && root.$store.state.user.user.id == props.data.user_id
-        })
+            return (
+                root.$store.state.user.isLoggedIn &&
+                root.$store.state.user.user.id == props.data.user_id
+            );
+        });
 
-        onMounted(()=>{
+        onMounted(() => {
+            Echo.channel(`virgool_reply_${props.data.id}`).listen(
+                ".reply.created",
+                ({ reply }) => {
+                    comment.value.replies.push(reply);
+                }
+            );
 
-            Echo.channel(`virgool_reply_${props.data.id}`)
-                .listen('.reply.created',({reply}) => {
-                    comment.value.replies.push(reply)
-                })
-
-            Echo.channel(`virgool_reply_${props.data.id}`)
-                .listen('CommentDeletedEvent',(event) => {
-                    comment.value.replies = comment.value.replies.filter(c => c.id !== event.comment.id)
-                })
-
-        })
-
+            Echo.channel(`virgool_reply_${props.data.id}`).listen(
+                "CommentDeletedEvent",
+                event => {
+                    comment.value.replies = comment.value.replies.filter(
+                        c => c.id !== event.comment.id
+                    );
+                }
+            );
+        });
 
         watch(
             () => reply.value.content,
-            (value) => {
+            value => {
                 if (reply.value.content && value.length > 5) {
-                    disableBtn.value = true
+                    disableBtn.value = true;
                 } else {
-                    disableBtn.value = false
+                    disableBtn.value = false;
                 }
             }
-        )
+        );
         return {
             showReply,
             reply,
@@ -141,11 +156,7 @@ export default {
             deleteComment,
             canShow,
             comment
-        }
+        };
     }
-}
+};
 </script>
-
-<style scoped>
-
-</style>

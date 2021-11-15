@@ -1,85 +1,96 @@
 @font-face {
     font-family: IRANSans;
-    font-style : normal;
+    font-style: normal;
     font-weight: 900;
-    src        : url('../fonts/iranSans/eot/IRANSansWeb_Black.eot');
-    src        : url('../fonts/iranSans/eot/IRANSansWeb_Black.eot?#iefix') format('embedded-opentype'),
-        /* IE6-8 */
-        url('../fonts/iranSans/woff2/IRANSansWeb_Black.woff2') format('woff2'),
+    src: url("../fonts/iranSans/eot/IRANSansWeb_Black.eot");
+    src: url("../fonts/iranSans/eot/IRANSansWeb_Black.eot?#iefix")
+            format("embedded-opentype"),
+        /* IE6-8 */ url("../fonts/iranSans/woff2/IRANSansWeb_Black.woff2")
+            format("woff2"),
         /* FF39+,Chrome36+, Opera24+*/
-        url('../fonts/iranSans/woff/IRANSansWeb_Black.woff') format('woff'),
+            url("../fonts/iranSans/woff/IRANSansWeb_Black.woff") format("woff"),
         /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-        url('../fonts/iranSans/ttf/IRANSansWeb_Black.ttf') format('truetype');
+            url("../fonts/iranSans/ttf/IRANSansWeb_Black.ttf")
+            format("truetype");
 }
 
 @font-face {
     font-family: IRANSans;
-    font-style : normal;
+    font-style: normal;
     font-weight: bold;
-    src        : url('../fonts/iranSans/eot/IRANSansWeb_Bold.eot');
-    src        : url('../fonts/iranSans/eot/IRANSansWeb_Bold.eot?#iefix') format('embedded-opentype'),
-        /* IE6-8 */
-        url('../fonts/iranSans/woff2/IRANSansWeb_Bold.woff2') format('woff2'),
+    src: url("../fonts/iranSans/eot/IRANSansWeb_Bold.eot");
+    src: url("../fonts/iranSans/eot/IRANSansWeb_Bold.eot?#iefix")
+            format("embedded-opentype"),
+        /* IE6-8 */ url("../fonts/iranSans/woff2/IRANSansWeb_Bold.woff2")
+            format("woff2"),
         /* FF39+,Chrome36+, Opera24+*/
-        url('../fonts/iranSans/woff/IRANSansWeb_Bold.woff') format('woff'),
+            url("../fonts/iranSans/woff/IRANSansWeb_Bold.woff") format("woff"),
         /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-        url('../fonts/iranSans/ttf/IRANSansWeb_Bold.ttf') format('truetype');
+            url("../fonts/iranSans/ttf/IRANSansWeb_Bold.ttf") format("truetype");
 }
 
 @font-face {
     font-family: IRANSans;
-    font-style : normal;
+    font-style: normal;
     font-weight: 500;
-    src        : url('../fonts/iranSans/eot/IRANSansWeb_Medium.eot');
-    src        : url('../fonts/iranSans/eot/IRANSansWeb_Medium.eot?#iefix') format('embedded-opentype'),
-        /* IE6-8 */
-        url('../fonts/iranSans/woff2/IRANSansWeb_Medium.woff2') format('woff2'),
+    src: url("../fonts/iranSans/eot/IRANSansWeb_Medium.eot");
+    src: url("../fonts/iranSans/eot/IRANSansWeb_Medium.eot?#iefix")
+            format("embedded-opentype"),
+        /* IE6-8 */ url("../fonts/iranSans/woff2/IRANSansWeb_Medium.woff2")
+            format("woff2"),
         /* FF39+,Chrome36+, Opera24+*/
-        url('../fonts/iranSans/woff/IRANSansWeb_Medium.woff') format('woff'),
+            url("../fonts/iranSans/woff/IRANSansWeb_Medium.woff") format("woff"),
         /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-        url('../fonts/iranSans/ttf/IRANSansWeb_Medium.ttf') format('truetype');
+            url("../fonts/iranSans/ttf/IRANSansWeb_Medium.ttf")
+            format("truetype");
 }
 
 @font-face {
     font-family: IRANSans;
-    font-style : normal;
+    font-style: normal;
     font-weight: 300;
-    src        : url('../fonts/iranSans/eot/IRANSansWeb_Light.eot');
-    src        : url('../fonts/iranSans/eot/IRANSansWeb_Light.eot?#iefix') format('embedded-opentype'),
-        /* IE6-8 */
-        url('../fonts/iranSans/woff2/IRANSansWeb_Light.woff2') format('woff2'),
+    src: url("../fonts/iranSans/eot/IRANSansWeb_Light.eot");
+    src: url("../fonts/iranSans/eot/IRANSansWeb_Light.eot?#iefix")
+            format("embedded-opentype"),
+        /* IE6-8 */ url("../fonts/iranSans/woff2/IRANSansWeb_Light.woff2")
+            format("woff2"),
         /* FF39+,Chrome36+, Opera24+*/
-        url('../fonts/iranSans/woff/IRANSansWeb_Light.woff') format('woff'),
+            url("../fonts/iranSans/woff/IRANSansWeb_Light.woff") format("woff"),
         /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-        url('../fonts/iranSans/ttf/IRANSansWeb_Light.ttf') format('truetype');
+            url("../fonts/iranSans/ttf/IRANSansWeb_Light.ttf")
+            format("truetype");
 }
 
 @font-face {
     font-family: IRANSans;
-    font-style : normal;
+    font-style: normal;
     font-weight: 200;
-    src        : url('../fonts/iranSans/eot/IRANSansWeb_UltraLight.eot');
-    src        : url('../fonts/iranSans/eot/IRANSansWeb_UltraLight.eot?#iefix') format('embedded-opentype'),
-        /* IE6-8 */
-        url('../fonts/iranSans/woff2/IRANSansWeb_UltraLight.woff2') format('woff2'),
+    src: url("../fonts/iranSans/eot/IRANSansWeb_UltraLight.eot");
+    src: url("../fonts/iranSans/eot/IRANSansWeb_UltraLight.eot?#iefix")
+            format("embedded-opentype"),
+        /* IE6-8 */ url("../fonts/iranSans/woff2/IRANSansWeb_UltraLight.woff2")
+            format("woff2"),
         /* FF39+,Chrome36+, Opera24+*/
-        url('../fonts/iranSans/woff/IRANSansWeb_UltraLight.woff') format('woff'),
+            url("../fonts/iranSans/woff/IRANSansWeb_UltraLight.woff")
+            format("woff"),
         /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-        url('../fonts/iranSans/ttf/IRANSansWeb_UltraLight.ttf') format('truetype');
+            url("../fonts/iranSans/ttf/IRANSansWeb_UltraLight.ttf")
+            format("truetype");
 }
 
 @font-face {
     font-family: IRANSans;
-    font-style : normal;
+    font-style: normal;
     font-weight: normal;
-    src        : url('../fonts/iranSans/eot/IRANSansWeb.eot');
-    src        : url('../fonts/iranSans/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'),
-        /* IE6-8 */
-        url('../fonts/iranSans/woff2/IRANSansWeb.woff2') format('woff2'),
+    src: url("../fonts/iranSans/eot/IRANSansWeb.eot");
+    src: url("../fonts/iranSans/eot/IRANSansWeb.eot?#iefix")
+            format("embedded-opentype"),
+        /* IE6-8 */ url("../fonts/iranSans/woff2/IRANSansWeb.woff2")
+            format("woff2"),
         /* FF39+,Chrome36+, Opera24+*/
-        url('../fonts/iranSans/woff/IRANSansWeb.woff') format('woff'),
+            url("../fonts/iranSans/woff/IRANSansWeb.woff") format("woff"),
         /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-        url('../fonts/iranSans/ttf/IRANSansWeb.ttf') format('truetype');
+            url("../fonts/iranSans/ttf/IRANSansWeb.ttf") format("truetype");
 }
 
 :focus-visible {
@@ -87,7 +98,7 @@
 }
 
 .v-application code {
-    direction : ltr !important;
+    direction: ltr !important;
     text-align: left !important;
 }
 
@@ -95,7 +106,8 @@
     line-height: unset !important;
 }
 
-.v-banner.v-sheet:not(.v-sheet--outlined):not(.v-sheet--shaped) .v-banner__wrapper {
+.v-banner.v-sheet:not(.v-sheet--outlined):not(.v-sheet--shaped)
+    .v-banner__wrapper {
     border-bottom: unset !important;
 }
 
@@ -104,14 +116,15 @@
     border-radius: 1.5rem !important;
     //background: #f5f8fa;
     /*margin     : 2rem;*/
-    margin       : 1rem 1rem 0 1rem;
+    margin: 1rem 1rem 0 1rem;
 }
 
 .theme--light.v-app-bar.v-toolbar.v-sheet {
     background-color: #ffffff !important;
 }
 
-.theme--light.v-navigation-drawer:not(.v-navigation-drawer--floating) .v-navigation-drawer__border {
+.theme--light.v-navigation-drawer:not(.v-navigation-drawer--floating)
+    .v-navigation-drawer__border {
     background-color: unset !important;
 }
 
@@ -134,22 +147,69 @@
 //     opacity: unset !important;
 // }
 
-
-.list-group.v-list-group--active>div:before {
-
+.list-group.v-list-group--active > div:before {
     content: unset !important;
-
-
 }
 
+.ltr {
+    direction: ltr;
+}
 
+.w-100 {
+    width: 100% !important;
+}
 
+.w-50 {
+    width: 50% !important;
+}
+
+.v-tab {
+    letter-spacing: 0 !important;
+}
+
+.c-pointer {
+    cursor: pointer;
+}
+
+.post-module_content {
+    line-height: 2.2;
+}
+
+.post-module_content p {
+    text-align: justify;
+}
+
+.post-module_content img {
+    width: 100%;
+}
+
+.card-title-ui {
+    text-align: right;
+    margin-top: 14px;
+    overflow: hidden;
+    /* max-width: 90%; */
+    min-height: 127px;
+    line-height: 25px;
+}
+
+.v-sheet.v-card:not(.v-sheet--outlined) {
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
+}
 .theme--light.v-list-item.v-list-item__content .v-list-item__title {
     color: #e5e5e5 !important;
 }
 
+.v-text-field.draft-text-field > .v-input__control > .v-input__slot:after,
+.v-text-field > .v-input__control > .v-input__slot:before {
+    width: unset !important;
+}
+
+.v-text-field.draft-text-field > .v-input__control > .v-input__slot:after,
+.v-text-field > .v-input__control > .v-input__slot:before {
+    width: unset !important;
+}
 .theme--light.v-list-item--active .v-list-item__content .v-list-item__title {
-    color      : #00a3ff !important;
+    color: #00a3ff !important;
     font-weight: 600 !important;
 }
 
@@ -166,6 +226,358 @@
     color: #2c3e50 !important;
 }
 
+.auth-bg-hui {
+    background-image: linear-gradient(to bottom right, #054592 0, #1897d4);
+    text-align: center;
+}
+
+.min-h-100vh {
+    min-height: 100vh;
+}
+
+.ww {
+    flex-grow: 1;
+}
+.users_count {
+    background: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        from(#90caf9),
+        color-stop(99%, #047edf)
+    ) !important;
+    background: linear-gradient(to right, #90caf9, #047edf 99%) !important;
+}
+
+.bg-gradient-danger {
+    background: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        from(#ffbf96),
+        to(#fe7096)
+    ) !important;
+    background: linear-gradient(to right, #ffbf96, #fe7096) !important;
+}
+
+.bg-gradient-info {
+    background: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        from(#90caf9),
+        color-stop(99%, #047edf)
+    ) !important;
+    background: linear-gradient(to right, #90caf9, #047edf 99%) !important;
+}
+
+.bg-gradient-success {
+    background: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        from(#84d9d2),
+        to(#07cdae)
+    ) !important;
+    background: linear-gradient(to right, #84d9d2, #07cdae) !important;
+}
+
+.bg-gradient-primary {
+    background: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        from(#da8cff),
+        to(#9a55ff)
+    );
+    background: linear-gradient(to right, #da8cff, #9a55ff);
+    border: 0;
+    -webkit-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
+}
+.bg-gradient-warning {
+    background: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        from(#f6e384),
+        to(#ffd500)
+    );
+    background: linear-gradient(to right, #f6e384, #ffd500);
+    color: #ffffff;
+}
+
+#dropzone {
+    font-family: "IRANSans", sans-serif;
+    margin: 2rem 0;
+}
+
+/* Give a remote user a caret */
+.collaboration-cursor__caret {
+    position: relative;
+    margin-left: -1px;
+    margin-right: -1px;
+    border-left: 1px solid #0d0d0d;
+    border-right: 1px solid #0d0d0d;
+    word-break: normal;
+    pointer-events: none;
+}
+
+/* Render the username above the caret */
+.collaboration-cursor__label {
+    position: absolute;
+    top: -1.4em;
+    left: -1px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    user-select: none;
+    color: #0d0d0d;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px 3px 3px 0;
+    white-space: nowrap;
+}
+
+/* Basic editor styles */
+.ProseMirror {
+    > * + * {
+        margin-top: 0.75em;
+    }
+
+    ul,
+    ol {
+        padding: 0 1rem;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        line-height: 1.1;
+    }
+
+    code {
+        background-color: rgba(#616161, 0.1);
+        color: #616161;
+    }
+
+    pre {
+        text-align: left;
+        direction: ltr;
+        background: #0d0d0d;
+        color: #fff;
+        font-family: "JetBrainsMono", monospace;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+
+        code {
+            text-align: left;
+            direction: ltr;
+            color: inherit;
+            padding: 0;
+            background: none;
+            font-size: 0.8rem;
+        }
+    }
+
+    mark {
+        background-color: #faf594;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    hr {
+        margin: 1rem 0;
+    }
+
+    blockquote {
+        padding-right: 1rem;
+        border-right: 2px solid rgba(#0d0d0d, 0.1);
+    }
+
+    hr {
+        border: none;
+        border-top: 2px solid rgba(#0d0d0d, 0.1);
+        margin: 2rem 0;
+    }
+
+    ul[data-type="taskList"] {
+        list-style: none;
+        padding: 0;
+
+        li {
+            display: flex;
+            align-items: center;
+
+            > label {
+                flex: 0 0 auto;
+                margin-right: 0.5rem;
+                user-select: none;
+            }
+
+            > div {
+                flex: 1 1 auto;
+            }
+        }
+    }
+}
+
+.editor {
+    display: flex;
+    flex-direction: column;
+    max-height: 26rem;
+    color: #0d0d0d;
+    background-color: #fff;
+    // border: 3px solid #0D0D0D;
+    border-radius: 0.75rem;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        // justify-content: center;
+        flex: 0 0 auto;
+        flex-wrap: wrap;
+        padding: 0.25rem;
+        // border-bottom: 3px solid #0D0D0D;
+    }
+
+    &__content {
+        padding: 1.25rem 1rem;
+        flex: 1 1 auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    &__footer {
+        display: flex;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        white-space: nowrap;
+        border-top: 3px solid #0d0d0d;
+        font-size: 12px;
+        font-weight: 600;
+        color: #0d0d0d;
+        white-space: nowrap;
+        padding: 0.25rem 0.75rem;
+    }
+
+    /* Some information about the status */
+    &__status {
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+
+        &::before {
+            content: " ";
+            flex: 0 0 auto;
+            display: inline-block;
+            width: 0.5rem;
+            height: 0.5rem;
+            background: rgba(#0d0d0d, 0.5);
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+
+        &--connecting::before {
+            background: #616161;
+        }
+
+        &--connected::before {
+            background: #b9f18d;
+        }
+    }
+
+    &__name {
+        button {
+            background: none;
+            border: none;
+            font: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            color: #0d0d0d;
+            border-radius: 0.4rem;
+            padding: 0.25rem 0.5rem;
+
+            &:hover {
+                color: #fff;
+                background-color: #0d0d0d;
+            }
+        }
+    }
+}
+
+.t-header-link-hui a {
+    transition: color 250ms ease-in;
+}
+
+.t-header-link-hui a.blue--text.text--lighten-4:hover,
+.t-header-link-hui a.white--text:hover {
+    color: #ffffff !important;
+}
+
+ul li {
+    list-style: none;
+    margin-right: 0.8rem;
+}
+
+ul li:first-child {
+    margin-right: unset;
+}
+
+a {
+    text-decoration: none;
+}
+
+.menu-item {
+    width: 1.75rem;
+    height: 1.75rem;
+    color: #0d0d0d;
+    border: none;
+    background-color: transparent;
+    border-radius: 0.4rem;
+    padding: 0.25rem;
+    margin-right: 0.25rem;
+
+    svg {
+        width: 100%;
+        height: 100%;
+        fill: currentColor;
+    }
+
+    &.is-active,
+    &:hover {
+        color: #fff;
+        background-color: #0d0d0d;
+    }
+}
+
+.divider {
+    width: 2px;
+    height: 1.25rem;
+    background-color: rgba(#000, 0.1);
+    margin-left: 0.5rem;
+    margin-right: 0.75rem;
+}
+
+.card-bg-scale {
+    /* z-index: 99; */
+}
+.v-responsive__content {
+    z-index: 2;
+}
+.card-overlay-bottom {
+    border-radius: 0.7rem;
+}
+
 .v-breadcrumbs {
     padding: 18px 0 !important;
 }
@@ -173,7 +585,7 @@
 @media (max-width: 768px) {
     .v-main__wrap {
         border-radius: unset !important;
-        margin       : unset !important;
+        margin: unset !important;
     }
 }
 
@@ -181,20 +593,29 @@
     box-shadow: unset !important;
 }
 
-.v-navigation-drawer__content .v-item-group .v-expansion-panel:not(:first-child)::after {
+.v-navigation-drawer__content
+    .v-item-group
+    .v-expansion-panel:not(:first-child)::after {
     border-top: unset !important;
 }
 
-.v-expansion-panel-content .v-expansion-panel-content__wrap .v-item-group .v-expansion-panel button {
+.v-expansion-panel-content
+    .v-expansion-panel-content__wrap
+    .v-item-group
+    .v-expansion-panel
+    button {
     padding: 16px 0 !important;
 }
 
 .v-navigation-drawer__content a {
-    color          : #7e8299 !important;
+    color: #7e8299 !important;
     text-decoration: none !important;
 }
 
-.v-application--is-rtl .v-list-group--no-action>.v-list-group__items>.v-list-item {
+.v-application--is-rtl
+    .v-list-group--no-action
+    > .v-list-group__items
+    > .v-list-item {
     padding-right: 55px !important;
 }
 
@@ -215,25 +636,25 @@ body {
 }
 
 @media (min-width: 992px) {
-
     div,
     ol,
     pre,
     span,
     ul {
         scrollbar-width: thin;
-        scrollbar-color: #eff2f5 transparent
+        scrollbar-color: #eff2f5 transparent;
     }
 
-    body::-webkit-scrollbar {}
+    body::-webkit-scrollbar {
+    }
 
     div::-webkit-scrollbar,
     ol::-webkit-scrollbar,
     pre::-webkit-scrollbar,
     span::-webkit-scrollbar,
     ul::-webkit-scrollbar {
-        width : .300rem;
-        height: .4rem;
+        width: 0.3rem;
+        height: 0.4rem;
     }
 
     div::-webkit-scrollbar-thumb,
@@ -241,7 +662,7 @@ body {
     pre::-webkit-scrollbar-thumb,
     span::-webkit-scrollbar-thumb,
     ul::-webkit-scrollbar-thumb {
-        background-color: #eff2f5
+        background-color: #eff2f5;
     }
 
     div,
@@ -257,7 +678,7 @@ body {
     pre:hover,
     span:hover,
     ul:hover {
-        scrollbar-color: #e9edf1 transparent
+        scrollbar-color: #e9edf1 transparent;
     }
 
     div:hover::-webkit-scrollbar-thumb,

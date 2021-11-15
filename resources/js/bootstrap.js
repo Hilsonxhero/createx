@@ -1,17 +1,14 @@
-window._ = require('lodash');
+window._ = require("lodash");
 
-
-import axios from '@/plugins/axios'
+import axios from "@/plugins/axios";
 
 window.axios = axios;
 
+import Echo from "laravel-echo";
 
-
-import Echo from 'laravel-echo';
-
-window.io = require('socket.io-client');
+window.io = require("socket.io-client");
 
 window.Echo = new Echo({
-    broadcaster: 'socket.io',
-    host:'localhost:6001'
+    broadcaster: "socket.io",
+    host: "localhost:6001"
 });

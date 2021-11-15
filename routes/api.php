@@ -120,7 +120,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/bookmarked-posts', [\App\Http\Controllers\User\BookmarkedPostController::class, 'index']);
     Route::get('/liked-posts', [\App\Http\Controllers\User\LikedPostController::class, 'index']);
 
-    Route::get('/home', [\App\Http\Controllers\HomePostController::class, 'index']);
+
 
     Route::post('/posts/all-posts', AllUserPostsController::class);
 
@@ -134,6 +134,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 });
 
+Route::get('/home', [\App\Http\Controllers\HomePostController::class, 'index']);
+
+Route::get('/feature-posts', [\App\Http\Controllers\FeaturePostController::class, 'index']);
+
 Route::get('/trending-posts', [\App\Http\Controllers\Post\TrendingPostController::class, 'index']);
 
 // search
@@ -143,6 +147,7 @@ Route::get('/search/categories', [\App\Http\Controllers\Search\SearchCategoryCon
 
 // admin routes
 Route::prefix('admin')->middleware(['verified'])->group(function () {
+    Route::get('dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index']);
 
     Route::apiResource('users', UserController::class);
     Route::post('users/destroy', [UserController::class, 'destroy']);

@@ -3,8 +3,12 @@
         <v-main>
             <v-container>
                 <v-row>
-                    <v-col :cols="post.col" v-for="(post,index) in posts2" :key="index">
-                        <related-post :data="post"></related-post>
+                    <v-col
+                        :cols="index === 0 || index === 3 ? 8 : 4"
+                        v-for="(featurePost, index) in featurePosts"
+                        :key="featurePost.post.slug"
+                    >
+                        <related-post :data="featurePost.post"></related-post>
                     </v-col>
                 </v-row>
             </v-container>
@@ -12,11 +16,14 @@
             <v-container>
                 <v-row class="mt-5">
                     <v-col cols="12" md="8">
-                        <new-post v-for="(post,index) in posts.data" :key="index" :data="post"></new-post>
+                        <new-post
+                            v-for="(post, index) in posts.data"
+                            :key="index"
+                            :data="post"
+                        ></new-post>
                     </v-col>
                     <v-col cols="4" class="hidden-sm-and-down">
                         <v-banner sticky>
-
                             <following-posts></following-posts>
                             <popular-posts></popular-posts>
                         </v-banner>
@@ -28,80 +35,35 @@
 </template>
 
 <script>
-
 import RelatedPost from "@/components/posts/RelatedPost";
 import NewPost from "@/components/posts/NewPost";
 import PopularPosts from "@/components/posts/PopularPosts";
-import {ref} from '@vue/composition-api'
+import { ref } from "@vue/composition-api";
 import FollowingPosts from "../components/posts/FollowingPosts";
 
 export default {
     name: "Home",
-    components: {FollowingPosts, PopularPosts, NewPost, RelatedPost},
+    components: { FollowingPosts, PopularPosts, NewPost, RelatedPost },
     setup() {
-        const drawer = ref(false)
-        const posts = ref({})
-        const posts2 = ref([
-            {
-                col: 8,
-                title: 'چگونه یک VC را هک* کنیم؟',
-                img: 'https://files.virgool.io/upload/users/14/posts/yfbjecf42pmt/3kjsjjkozttm.jpeg?x-img=v1/resize,w_700/optimize,q_100',
-                user: {
-                    username: 'امیر',
-                    avatar: 'https://files.virgool.io/upload/users/14/avatar/avatar.png?x-img=v1/resize,h_120,w_120/optimize,q_100'
-                },
-                created_at: " روز پیش"
-            },
-            {
-                col: 4,
-                title: 'چگونه یک VC را هک* کنیم؟',
-                img: 'https://files.virgool.io/upload/users/4227/posts/finsbhznp9bq/y970ad2dusw9.jpeg?x-img=v1/resize,w_700/optimize,q_100',
-                user: {
-                    username: 'امیر',
-                    avatar: 'https://files.virgool.io/upload/users/14/avatar/avatar.png?x-img=v1/resize,h_120,w_120/optimize,q_100'
-                },
-                created_at: " روز پیش"
-            },
-            {
-                col: 4,
-                title: 'چگونه یک VC را هک* کنیم؟',
-                img: 'https://files.virgool.io/upload/users/7316/posts/ukvkrbod5b7m/ao6qhcekiojh.jpeg?x-img=v1/resize,w_700/optimize,q_100',
-                user: {
-                    username: 'امیر',
-                    avatar: 'https://files.virgool.io/upload/users/14/avatar/avatar.png?x-img=v1/resize,h_120,w_120/optimize,q_100'
-                },
-                created_at: " روز پیش"
-            },
-            {
-                col: 8,
-                title: 'چگونه یک VC را هک* کنیم؟',
-                img: 'https://files.virgool.io/upload/users/66869/posts/nmahvslnq6uw/8pso7fhsvxv1.jpeg?x-img=v1/resize,w_700/optimize,q_100',
-                user: {
-                    username: 'امیر',
-                    avatar: 'https://files.virgool.io/upload/users/14/avatar/avatar.png?x-img=v1/resize,h_120,w_120/optimize,q_100'
-                },
-                created_at: " روز پیش"
-            }
-        ])
+        const drawer = ref(false);
+        const posts = ref({});
+        const featurePosts = ref([]);
 
         // created hook
 
-        axios.get('/api/home')
-            .then(({data}) => {
-                posts.value = data.posts
-            })
+        axios.get("/api/feature-posts").then(({ data }) => {
+            featurePosts.value = data.data;
+        });
+
+        axios.get("/api/home").then(({ data }) => {
+            posts.value = data.posts;
+        });
 
         return {
             drawer,
             posts,
-            posts2
-        }
-    },
-
-
-}
+            featurePosts
+        };
+    }
+};
 </script>
-
-<style>
-
-</style>

@@ -71,26 +71,39 @@ export default [
 
     {
         path: "/",
-        component: require("@/views/layout/App.vue").default,
+        component: () =>
+            import(
+                /* webpackChunkName: "AppLayout" */ "@/views/layout/App.vue"
+            ),
         children: [
             {
                 path: "",
-                component: require("@/views/Home.vue").default,
+                component: () =>
+                    import(/* webpackChunkName: "Home" */ "@/views/Home.vue"),
                 name: "home"
             },
             {
                 path: "/posts/:slug",
-                component: require("@/views/Post/Index.vue").default,
+                component: () =>
+                    import(
+                        /* webpackChunkName: "PostShow" */ "@/views/Post/Index.vue"
+                    ),
                 name: "post-show"
             },
             {
                 path: "/post/draft",
-                component: require("@/views/Post/MyPosts.vue").default,
+                component: () =>
+                    import(
+                        /* webpackChunkName: "MyPost" */ "@/views/Post/MyPosts.vue"
+                    ),
                 name: "my-post"
             },
             {
                 path: "/drafts/:link",
-                component: require("@/views/Post/Create.vue").default,
+                component: () =>
+                    import(
+                        /* webpackChunkName: "UpdateDraft" */ "@/views/Post/Create.vue"
+                    ),
                 name: "update-draft",
                 meta: {
                     auth: true,
@@ -100,7 +113,10 @@ export default [
 
             {
                 path: "/drafts/:link/save",
-                component: require("@/views/Post/SavePost.vue").default,
+                component: () =>
+                    import(
+                        /* webpackChunkName: "SavePost" */ "@/views/Post/SavePost.vue"
+                    ),
                 name: "save-post",
                 meta: {
                     auth: true,
@@ -109,7 +125,11 @@ export default [
             },
             {
                 path: "/post/create",
-                component: require("@/views/Post/Create.vue").default,
+                component: () =>
+                    import(
+                        /* webpackChunkName: "PostCreate" */ "@/views/Post/Create.vue"
+                    ),
+
                 name: "post-create",
                 meta: {
                     auth: true,
@@ -119,7 +139,11 @@ export default [
 
             {
                 path: "/post/:slug/edit",
-                component: require("@/views/Post/Edit.vue").default,
+                component: () =>
+                    import(
+                        /* webpackChunkName: "PostEdit" */ "@/views/Post/Edit.vue"
+                    ),
+
                 name: "edit-post",
                 meta: {
                     auth: true,
@@ -129,7 +153,11 @@ export default [
 
             {
                 path: "/post/:slug/update",
-                component: require("@/views/Post/UpdatePost.vue").default,
+                component: () =>
+                    import(
+                        /* webpackChunkName: "UpdatePost" */ "@/views/Post/UpdatePost.vue"
+                    ),
+
                 name: "update-post",
                 meta: {
                     auth: true,
@@ -139,13 +167,20 @@ export default [
 
             {
                 path: "/posts/category/:slug",
-                component: require("@/views/Post/PostCategory.vue").default,
+                component: () =>
+                    import(
+                        /* webpackChunkName: "PostCategory" */ "@/views/Post/PostCategory.vue"
+                    ),
+
                 name: "post-category"
             },
 
             {
                 path: "/profile",
-                component: require("@/views/User/Profile.vue").default,
+                component: () =>
+                    import(
+                        /* webpackChunkName: "Profile" */ "@/views/User/Profile.vue"
+                    ),
                 name: "profile",
                 meta: {
                     auth: true,
@@ -155,13 +190,20 @@ export default [
 
             {
                 path: "/@:username",
-                component: require("@/views/User/UserPosts.vue").default,
+                component: () =>
+                    import(
+                        /* webpackChunkName: "UserPosts" */ "@/views/User/UserPosts.vue"
+                    ),
                 name: "user-posts"
             },
 
             {
                 path: "/me/setting",
-                component: require("@/views/User/Setting.vue").default,
+                component: () =>
+                    import(
+                        /* webpackChunkName: "ProfileSetting" */ "@/views/User/Setting.vue"
+                    ),
+
                 name: "profile-setting",
                 meta: {
                     auth: true,
@@ -171,8 +213,11 @@ export default [
 
             {
                 path: "/me/bookmarks",
-                component: require("@/views/User/UserBookmarkedPost.vue")
-                    .default,
+                component: () =>
+                    import(
+                        /* webpackChunkName: "UserBookMarks" */ "@/views/User/UserBookmarkedPost.vue"
+                    ),
+
                 name: "user-bookmarks",
                 meta: {
                     auth: true,
@@ -182,7 +227,11 @@ export default [
 
             {
                 path: "/me/likes",
-                component: require("@/views/User/UserLikedPost.vue").default,
+                component: () =>
+                    import(
+                        /* webpackChunkName: "UserLikes" */ "@/views/User/UserLikedPost.vue"
+                    ),
+
                 name: "user-likes",
                 meta: {
                     auth: true,
@@ -192,7 +241,11 @@ export default [
 
             {
                 path: "/search/:type",
-                component: require("@/views/Search/Index.vue").default,
+                component: () =>
+                    import(
+                        /* webpackChunkName: "Search" */ "@/views/Search/Index.vue"
+                    ),
+
                 name: "search"
             }
         ]
@@ -200,7 +253,11 @@ export default [
 
     {
         path: "/register",
-        component: require("@/views/Auth/Register.vue/").default,
+        component: () =>
+            import(
+                /* webpackChunkName: "Register" */ "@/views/Auth/Register.vue"
+            ),
+
         name: "register",
         meta: {
             guest: true
@@ -208,7 +265,8 @@ export default [
     },
     {
         path: "/login",
-        component: require("@/views/Auth/Login.vue/").default,
+        component: () =>
+            import(/* webpackChunkName: "Login" */ "@/views/Auth/Login.vue"),
         name: "login",
         meta: {
             guest: true
@@ -217,7 +275,11 @@ export default [
 
     {
         path: "/auth/verify",
-        component: require("@/views/Auth/Verify.vue/").default,
+        component: () =>
+            import(
+                /* webpackChunkName: "AuthVerify" */ "@/views/Auth/Verify.vue/"
+            ),
+
         name: "auth-verify",
         meta: {
             auth: true
@@ -225,7 +287,11 @@ export default [
     },
     {
         path: "/reset/password",
-        component: require("@/views/Auth/ResetEmailPassword.vue/").default,
+        component: () =>
+            import(
+                /* webpackChunkName: "ResetEmailPassword" */ "@/views/Auth/ResetEmailPassword.vue"
+            ),
+
         name: "reset-email-password",
         meta: {
             guest: true
@@ -233,7 +299,11 @@ export default [
     },
     {
         path: "/reset/password/:token",
-        component: require("@/views/Auth/ResetPassword.vue/").default,
+        component: () =>
+            import(
+                /* webpackChunkName: "ResetPassword" */ "@/views/Auth/ResetPassword.vue/"
+            ),
+
         name: "reset-password",
         meta: {
             guest: true
