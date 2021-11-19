@@ -1,6 +1,30 @@
 <template>
-    <v-card flat class="mt-5">
-        <div class="d-flex flex-row align-center p-3">
+    <v-col cols="4">
+        <v-card flat class="mt-5 bg-tp-ui">
+            <!-- <div class="d-flex flex-row align-center p-3">
+                <v-spacer></v-spacer>
+                <div class="gray--text body-2">ورزشی</div>
+            </div> -->
+            <router-link
+                :to="{ name: 'post-show', params: { slug: data.slug } }"
+            >
+                <v-img
+                    class="cover-post-ui"
+                    height="200"
+                    :src="data.banner_src"
+                    gradient="to bottom,rgba(0,0,0,.1), rgba(0,0,0,.8)"
+                ></v-img>
+            </router-link>
+            <router-link
+                :to="{ name: 'post-show', params: { slug: data.slug } }"
+            >
+                <v-card-title
+                    class="black--text pr-0"
+                    v-html="data.title"
+                ></v-card-title
+            ></router-link>
+
+            <v-card-text class="pr-0" v-html="data.dec"> </v-card-text>
             <v-list-item class="pr-0">
                 <router-link
                     :to="{
@@ -15,45 +39,40 @@
                 <v-list-item-content>
                     <v-list-item-title
                         class=""
-                        v-html="data.title"
+                        v-html="data.user.username"
                     ></v-list-item-title>
                     <v-list-item-subtitle
                         v-html="data.created_at"
                     ></v-list-item-subtitle>
                 </v-list-item-content>
             </v-list-item>
-            <v-spacer></v-spacer>
-            <div class="gray--text body-2">ورزشی</div>
-        </div>
-        <router-link :to="{ name: 'post-show', params: { slug: data.slug } }">
-            <v-img max-height="300" :src="data.banner_src"></v-img>
-        </router-link>
+            <v-card-actions class="mt-3 d-none">
+                <div class="d-flex align-center">
+                    <v-btn icon @click="likePost">
+                        <v-icon :class="{ 'red--text': data.is_liked }">
+                            {{
+                                data.is_liked
+                                    ? " mdi-heart"
+                                    : " mdi-heart-outline"
+                            }}
+                        </v-icon>
+                    </v-btn>
+                    <div class="mr-1">{{ data.likes_count }}</div>
+                </div>
 
-        <v-card-text v-html="data.dec"> </v-card-text>
-        <v-card-actions class="mt-3">
-            <div class="d-flex align-center">
-                <v-btn icon @click="likePost">
-                    <v-icon :class="{ 'red--text': data.is_liked }">
+                <v-spacer></v-spacer>
+                <v-btn icon @click="bookmarkPost(data)">
+                    <v-icon>
                         {{
-                            data.is_liked ? " mdi-heart" : " mdi-heart-outline"
+                            data.is_bookmarked
+                                ? "mdi-bookmark"
+                                : "mdi-bookmark-outline"
                         }}
                     </v-icon>
                 </v-btn>
-                <div class="mr-1">{{ data.likes_count }}</div>
-            </div>
-
-            <v-spacer></v-spacer>
-            <v-btn icon @click="bookmarkPost(data)">
-                <v-icon>
-                    {{
-                        data.is_bookmarked
-                            ? "mdi-bookmark"
-                            : "mdi-bookmark-outline"
-                    }}
-                </v-icon>
-            </v-btn>
-        </v-card-actions>
-    </v-card>
+            </v-card-actions>
+        </v-card>
+    </v-col>
 </template>
 
 <script>

@@ -47,11 +47,13 @@
                 </div>
 
                 <div class="my-15">
-                    <new-post
-                        v-for="(post, index) in posts.data"
-                        :key="index"
-                        :data="post"
-                    ></new-post>
+                    <v-row>
+                        <new-post
+                            v-for="(post, index) in posts.data"
+                            :key="index"
+                            :data="post"
+                        ></new-post>
+                    </v-row>
                 </div>
 
                 <div class="d-none flex-row align-center justify-center mt-15">
@@ -60,13 +62,6 @@
                 <div class="mt-15 d-none">
                     شما هنوز پستی در ویرگول ننوشته‌اید. همین حالا اقدام به نوشتن
                     اولین پست خود کنید.
-                </div>
-
-                <div class="mt-10">
-                    <v-btn rounded large color="primary" class="darken-1">
-                        نوشتن اولین پست
-                        <v-icon class="mr-1">mdi-chevron-left</v-icon>
-                    </v-btn>
                 </div>
             </v-col>
         </v-row>

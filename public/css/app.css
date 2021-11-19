@@ -49,6 +49,12 @@
   src: url(/fonts/IRANSansWeb.eot?432a2b2da04e215189122208ea7794d7);
   src: url(/fonts/IRANSansWeb.eot?432a2b2da04e215189122208ea7794d7?#iefix) format("embedded-opentype"), url(/fonts/IRANSansWeb.woff2?cdb118d6a351d596a2d78c7fe986de6b) format("woff2"), url(/fonts/IRANSansWeb.woff?9ffdcda01ffd6d404d6f159bb5691444) format("woff"), url(/fonts/IRANSansWeb.ttf?ae01de6907048fbaba8b352fe81eb56f) format("truetype");
 }
+@font-face {
+  font-family: yekan-bakh-en;
+  font-style: normal;
+  font-weight: 500;
+  src: url(/fonts/500.eot?eed7075a9010fcb637175a8cb1677356) format("eot"), url(/fonts/500.woff?6a7bf1b998b1a020f5f4249234ede2c1) format("woff"), url(/fonts/500.ttf?87941427127060e8d0f84f837076ecd3) format("truetype");
+}
 :focus-visible {
   outline: unset !important;
 }
@@ -546,24 +552,192 @@ ul:hover::-webkit-scrollbar-thumb {
     background-color: #e9edf1;
   }
 }
+.cover-post-ui {
+  border-radius: 0.7rem;
+}
+
+.bg-light-ui {
+  --bs-bg-opacity: 1;
+  background-color: #f7f8f9 !important;
+}
+
+.theme--dark .bg-light-ui {
+  --bs-bg-opacity: 1;
+  background-color: #202227 !important;
+}
+
+.theme--dark.v-application {
+  background: #191a1f !important;
+  color: #fff;
+}
+
+.theme--dark.v-toolbar.v-sheet {
+  background-color: #191a1f !important;
+}
+
+.bg-light-cover-ui {
+  border-radius: 1rem;
+}
+
+.rounded-7 {
+  border-radius: 0.7rem;
+}
+
+.rounded-8 {
+  border-radius: 0.8rem;
+}
+
+.rounded-9 {
+  border-radius: 0.9rem;
+}
+
+.rounded-1 {
+  border-radius: 1rem;
+}
+
+.btn-link-ui {
+  padding-bottom: 0px;
+  background: linear-gradient(to right, currentColor 0%, currentColor 100%);
+  background-size: 0px 6%;
+  background-repeat: no-repeat;
+  background-position: left 100%;
+  transition-duration: 0.5s;
+  font-weight: inherit;
+  padding: 0;
+}
+
+.btn-link-ui:hover {
+  background-size: 100% 6%;
+}
+
+.swiper-button-next:after,
+.swiper-container-rtl .swiper-button-prev:after,
+.swiper-button-prev:after,
+.swiper-container-rtl .swiper-button-next:after {
+  content: unset !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  transform: translateY(-10px);
+  background-image: unset !important;
+  margin: unset !important;
+  width: unset !important;
+  height: unset !important;
+  font-size: 24px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.swiper-button-prev {
+  right: -90px !important;
+  left: auto !important;
+}
+
+.swiper-button-next,
+.swiper-container-rtl .swiper-button-prev {
+  left: -90px !important;
+  right: auto !important;
+}
+
+section {
+  position: relative;
+}
+
+.slider {
+  overflow: hidden;
+  position: relative;
+}
+
+.arrow-dark {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px !important;
+  height: 40px !important;
+  line-height: 40px !important;
+  border-radius: 0.25rem;
+  display: block;
+  z-index: 9;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5 px);
+  background: rgba(0, 0, 0, 0.4) !important;
+  color: #fff;
+  border: none;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.arrow-hover:hover .swiper-button-next {
+  left: 15px !important;
+}
+
+.arrow-hover:hover .swiper-button-prev {
+  right: 15px !important;
+}
+
+.arrow-round {
+  border-radius: 50%;
+}
+
+.swiper-button-prev.swiper-button-disabled,
+.swiper-button-next.swiper-button-disabled {
+  pointer-events: all !important;
+}
+
+.theme--dark.v-list {
+  background: transparent !important;
+}
+
+.bg-tp-ui {
+  background: transparent !important;
+}
+
+.theme--dark .black--text {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.theme--dark.v-list-item:hover:before {
+  opacity: 0 !important;
+}
+
+.theme--dark.v-list-item:before {
+  content: unset !important;
+}
+
 .v-application {
-  font-family: IRANSans, sans-serif !important;
+  font-family: yekan-bakh-en;
 }
 .v-application [class*=text-] {
-  font-family: IRANSans, sans-serif !important;
+  font-family: yekan-bakh-en;
 }
 .v-application [class*=body-],
 .v-application .v-application .caption {
-  font-family: IRANSans, sans-serif !important;
+  font-family: yekan-bakh-en;
 }
 .v-application [class*=title] {
-  font-family: IRANSans, sans-serif !important;
+  font-family: yekan-bakh-en;
 }
 .v-application [class*=display-] {
-  font-family: IRANSans, sans-serif !important;
+  font-family: yekan-bakh-en;
 }
 .v-application .caption {
-  font-family: IRANSans, sans-serif !important;
+  font-family: yekan-bakh-en;
+}
+
+.v-application .body-2,
+.v-application .subtitle-1 {
+  font-weight: 400;
+  font-family: yekan-bakh-en !important;
+}
+
+.v-application .text-h5,
+.v-application .text-h6 {
+  line-height: 2rem;
+  font-family: yekan-bakh-en !important;
 }
 
 .v-btn {

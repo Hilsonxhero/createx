@@ -93,6 +93,15 @@
             url("../fonts/iranSans/ttf/IRANSansWeb.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: yekan-bakh-en;
+    font-style: normal;
+    font-weight: 500;
+    src: url(../fonts/yekan-bakh-en/normal/500.eot?) format("eot"),
+        url(../fonts/yekan-bakh-en/normal/500.woff) format("woff"),
+        url(../fonts/yekan-bakh-en/normal/500.ttf) format("truetype");
+}
+
 :focus-visible {
     outline: unset !important;
 }
@@ -689,7 +698,167 @@ body {
         background-color: #e9edf1;
     }
 }
+.cover-post-ui {
+    border-radius: 0.7rem;
+}
+.bg-light-ui {
+    --bs-bg-opacity: 1;
+    background-color: rgba(247, 248, 249, 1) !important;
+}
+.theme--dark .bg-light-ui {
+    --bs-bg-opacity: 1;
+    background-color: rgba(32, 34, 39, 1) !important;
+}
+.theme--dark.v-application {
+    background: rgb(25, 26, 31) !important;
+    color: #fff;
+}
+.theme--dark.v-toolbar.v-sheet {
+    background-color: rgb(25, 26, 31) !important;
+}
+.bg-light-cover-ui {
+    border-radius: 1rem;
+}
+// .theme--dark.v-card {
+//     background-color: rgb(15, 15, 16) !important;
+// }
+// .theme--dark.v-navigation-drawer {
+//     background-color: rgb(15, 15, 16) !important;
+// }
+.rounded-7 {
+    border-radius: 0.7rem;
+}
+.rounded-8 {
+    border-radius: 0.8rem;
+}
+.rounded-9 {
+    border-radius: 0.9rem;
+}
+.rounded-1 {
+    border-radius: 1rem;
+}
+.btn-link-ui {
+    padding-bottom: 0px;
+    background: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        from(currentColor),
+        to(currentColor)
+    );
+    background: linear-gradient(to right, currentColor 0%, currentColor 100%);
+    background-size: 0px 6%;
+    background-repeat: no-repeat;
+    background-position: left 100%;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    font-weight: inherit;
+    padding: 0;
+}
+.btn-link-ui:hover {
+    background-size: 100% 6%;
+}
 
+.swiper-button-next:after,
+.swiper-container-rtl .swiper-button-prev:after,
+.swiper-button-prev:after,
+.swiper-container-rtl .swiper-button-next:after {
+    content: unset !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    // top: 12px !important;
+    transform: translateY(-10px);
+    background-image: unset !important;
+    margin: unset !important;
+    width: unset !important;
+    height: unset !important;
+    font-size: 24px;
+    text-align: center;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    align-items: center;
+}
+
+.swiper-button-prev {
+    right: -90px !important;
+    left: auto !important;
+}
+
+.swiper-button-next,
+.swiper-container-rtl .swiper-button-prev {
+    left: -90px !important;
+    right: auto !important;
+}
+
+section {
+    position: relative;
+}
+.slider {
+    overflow: hidden;
+    position: relative;
+}
+.arrow-dark {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 40px !important;
+    height: 40px !important;
+    line-height: 40px !important;
+    border-radius: 0.25rem;
+    display: block;
+    z-index: 9;
+    text-align: center;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5 px);
+    background: rgba(0, 0, 0, 0.4) !important;
+    color: #fff;
+    border: none;
+    padding: 0;
+    // margin: 0 10px;
+    border-radius: 50%;
+}
+.arrow-hover {
+}
+.arrow-hover:hover .swiper-button-next {
+    left: 15px !important;
+}
+.arrow-hover:hover .swiper-button-prev {
+    right: 15px !important;
+}
+.arrow-round {
+    border-radius: 50%;
+}
+.swiper-button-prev.swiper-button-disabled,
+.swiper-button-next.swiper-button-disabled {
+    pointer-events: all !important;
+}
+
+.theme--dark.v-list {
+    background: transparent !important;
+}
+
+// .theme--dark.v-sheet {
+//     background: transparent !important;
+// }
+.bg-tp-ui {
+    background: transparent !important;
+}
+.theme--dark .black--text {
+    color: hsla(0, 0%, 100%, 0.7) !important;
+}
+
+.theme--dark.v-list-item:hover:before {
+    opacity: 0 !important;
+}
+.theme--dark.v-list-item:before {
+    content: unset !important;
+}
 // Vuetify
 @import "~vuetify/dist/vuetify.min.css";
 @import "variables";

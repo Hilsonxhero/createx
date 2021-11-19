@@ -13,16 +13,20 @@
                 </v-row>
             </v-container>
 
+            <category-slider></category-slider>
+
             <v-container>
                 <v-row class="mt-5">
-                    <v-col cols="12" md="8">
-                        <new-post
-                            v-for="(post, index) in posts.data"
-                            :key="index"
-                            :data="post"
-                        ></new-post>
+                    <v-col cols="12" md="9">
+                        <v-row>
+                            <new-post
+                                v-for="(post, index) in posts.data"
+                                :key="index"
+                                :data="post"
+                            ></new-post>
+                        </v-row>
                     </v-col>
-                    <v-col cols="4" class="hidden-sm-and-down">
+                    <v-col cols="3" class="hidden-sm-and-down">
                         <v-banner sticky>
                             <following-posts></following-posts>
                             <popular-posts></popular-posts>
@@ -40,10 +44,17 @@ import NewPost from "@/components/posts/NewPost";
 import PopularPosts from "@/components/posts/PopularPosts";
 import { ref } from "@vue/composition-api";
 import FollowingPosts from "../components/posts/FollowingPosts";
+import CategorySlider from "../components/CategorySlider.vue";
 
 export default {
     name: "Home",
-    components: { FollowingPosts, PopularPosts, NewPost, RelatedPost },
+    components: {
+        FollowingPosts,
+        PopularPosts,
+        NewPost,
+        RelatedPost,
+        CategorySlider
+    },
     setup() {
         const drawer = ref(false);
         const posts = ref({});

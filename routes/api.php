@@ -114,8 +114,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::patch('/user/notification/{notification}', [NotificationController::class, 'update'])
         ->name('notifications.update');
 
-    Route::get('/navbar/categories', [NavbarCategoryController::class, 'index']);
-    Route::get('/user-posts/{user:username}', [UserPostController::class, 'index']);
+
 
     Route::get('/bookmarked-posts', [\App\Http\Controllers\User\BookmarkedPostController::class, 'index']);
     Route::get('/liked-posts', [\App\Http\Controllers\User\LikedPostController::class, 'index']);
@@ -133,6 +132,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/posts/category/{category:slug}', [PostCategoryController::class, 'index']);
 
 });
+
+Route::get('/navbar/categories', [NavbarCategoryController::class, 'index']);
+Route::get('/user-posts/{user:username}', [UserPostController::class, 'index']);
 
 Route::get('/home', [\App\Http\Controllers\HomePostController::class, 'index']);
 

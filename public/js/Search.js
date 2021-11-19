@@ -69,6 +69,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "NewPost",
@@ -527,13 +546,54 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-card",
-    { staticClass: "mt-5", attrs: { flat: "" } },
+    "v-col",
+    { attrs: { cols: "4" } },
     [
       _c(
-        "div",
-        { staticClass: "d-flex flex-row align-center p-3" },
+        "v-card",
+        { staticClass: "mt-5 bg-tp-ui", attrs: { flat: "" } },
         [
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to: { name: "post-show", params: { slug: _vm.data.slug } }
+              }
+            },
+            [
+              _c("v-img", {
+                staticClass: "cover-post-ui",
+                attrs: {
+                  height: "200",
+                  src: _vm.data.banner_src,
+                  gradient: "to bottom,rgba(0,0,0,.1), rgba(0,0,0,.8)"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to: { name: "post-show", params: { slug: _vm.data.slug } }
+              }
+            },
+            [
+              _c("v-card-title", {
+                staticClass: "black--text pr-0",
+                domProps: { innerHTML: _vm._s(_vm.data.title) }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-card-text", {
+            staticClass: "pr-0",
+            domProps: { innerHTML: _vm._s(_vm.data.dec) }
+          }),
+          _vm._v(" "),
           _c(
             "v-list-item",
             { staticClass: "pr-0" },
@@ -564,7 +624,7 @@ var render = function() {
                 "v-list-item-content",
                 [
                   _c("v-list-item-title", {
-                    domProps: { innerHTML: _vm._s(_vm.data.title) }
+                    domProps: { innerHTML: _vm._s(_vm.data.user.username) }
                   }),
                   _vm._v(" "),
                   _c("v-list-item-subtitle", {
@@ -577,86 +637,71 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("v-spacer"),
-          _vm._v(" "),
-          _c("div", { staticClass: "gray--text body-2" }, [_vm._v("ورزشی")])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "router-link",
-        {
-          attrs: { to: { name: "post-show", params: { slug: _vm.data.slug } } }
-        },
-        [
-          _c("v-img", {
-            attrs: { "max-height": "300", src: _vm.data.banner_src }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("v-card-text", { domProps: { innerHTML: _vm._s(_vm.data.dec) } }),
-      _vm._v(" "),
-      _c(
-        "v-card-actions",
-        { staticClass: "mt-3" },
-        [
           _c(
-            "div",
-            { staticClass: "d-flex align-center" },
+            "v-card-actions",
+            { staticClass: "mt-3 d-none" },
             [
               _c(
-                "v-btn",
-                { attrs: { icon: "" }, on: { click: _vm.likePost } },
+                "div",
+                { staticClass: "d-flex align-center" },
                 [
-                  _c("v-icon", { class: { "red--text": _vm.data.is_liked } }, [
+                  _c(
+                    "v-btn",
+                    { attrs: { icon: "" }, on: { click: _vm.likePost } },
+                    [
+                      _c(
+                        "v-icon",
+                        { class: { "red--text": _vm.data.is_liked } },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(
+                                _vm.data.is_liked
+                                  ? " mdi-heart"
+                                  : " mdi-heart-outline"
+                              ) +
+                              "\n                    "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mr-1" }, [
+                    _vm._v(_vm._s(_vm.data.likes_count))
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { icon: "" },
+                  on: {
+                    click: function($event) {
+                      return _vm.bookmarkPost(_vm.data)
+                    }
+                  }
+                },
+                [
+                  _c("v-icon", [
                     _vm._v(
                       "\n                    " +
                         _vm._s(
-                          _vm.data.is_liked
-                            ? " mdi-heart"
-                            : " mdi-heart-outline"
+                          _vm.data.is_bookmarked
+                            ? "mdi-bookmark"
+                            : "mdi-bookmark-outline"
                         ) +
                         "\n                "
                     )
                   ])
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "mr-1" }, [
-                _vm._v(_vm._s(_vm.data.likes_count))
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("v-spacer"),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              attrs: { icon: "" },
-              on: {
-                click: function($event) {
-                  return _vm.bookmarkPost(_vm.data)
-                }
-              }
-            },
-            [
-              _c("v-icon", [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(
-                      _vm.data.is_bookmarked
-                        ? "mdi-bookmark"
-                        : "mdi-bookmark-outline"
-                    ) +
-                    "\n            "
-                )
-              ])
+              )
             ],
             1
           )

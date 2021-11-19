@@ -1,6 +1,6 @@
 <template>
     <router-link :to="{ name: 'home' }">
-        <v-img max-width="50" src="/images/vuedotjs.svg"></v-img>
+        <v-img max-width="100" src="/images/logo-dark.svg"></v-img>
     </router-link>
 </template>
 
@@ -9,4 +9,3 @@ export default {
     name: "Logo"
 };
 </script>
-

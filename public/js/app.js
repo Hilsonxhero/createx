@@ -36532,7 +36532,9 @@ var render = function() {
     "router-link",
     { attrs: { to: { name: "home" } } },
     [
-      _c("v-img", { attrs: { "max-width": "50", src: "/images/vuedotjs.svg" } })
+      _c("v-img", {
+        attrs: { "max-width": "100", src: "/images/logo-dark.svg" }
+      })
     ],
     1
   )

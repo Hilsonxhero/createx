@@ -1,51 +1,62 @@
-    $body-font-family: IRANSans;
-    $font-family-base: IRANSans;
-    $title-font: IRANSans;
-    $font-family:IRANSans;
-    .v-application {
-        [class*='text-'] {
-            font-family: $font-family, sans-serif !important;
-        }
-        [class*='body-'],
-        .v-application .caption {
-            font-family: $font-family, sans-serif !important;
-        }
-        [class*='title'] {
-            font-family: $font-family, sans-serif !important;
-        }
-        [class*='display-'] {
-            font-family: $font-family, sans-serif !important;
-        }
-        .caption {
-            font-family: $font-family, sans-serif !important;
-        }
-        font-family: $font-family,
-        sans-serif !important;
+$body-font-family: yekan-bakh-en;
+$font-family-base: yekan-bakh-en;
+$title-font: yekan-bakh-en;
+$font-family: yekan-bakh-en;
+.v-application {
+    [class*="text-"] {
+        font-family: yekan-bakh-en;
     }
-    
-    .v-btn {
-        letter-spacing: 0 !important;
+    [class*="body-"],
+    .v-application .caption {
+        font-family: yekan-bakh-en;
     }
-    
-    .v-card__title {
-        word-break: unset !important;
+    [class*="title"] {
+        font-family: yekan-bakh-en;
     }
-    
-     ::-webkit-scrollbar {
-        display: none;
+    [class*="display-"] {
+        font-family: yekan-bakh-en;
     }
-    
-    // Typography
-    $font-size-base: 0.1rem;
-    $line-height-base: 1.6;
-    // Colors
-    $blue: #3490dc;
-    $indigo: #6574cd;
-    $purple: #9561e2;
-    $pink: #f66d9b;
-    $red: #e3342f;
-    $orange: #f6993f;
-    $yellow: #ffed4a;
-    $green: #38c172;
-    $teal: #4dc0b5;
-    $cyan: #6cb2eb;
+    .caption {
+        font-family: yekan-bakh-en;
+    }
+    font-family: yekan-bakh-en;
+}
+
+.v-application .body-2,
+.v-application .subtitle-1 {
+    font-weight: 400;
+    font-family: yekan-bakh-en !important;
+}
+
+.v-application .text-h5,
+.v-application .text-h6 {
+    line-height: 2rem;
+    font-family: yekan-bakh-en !important;
+}
+
+.v-btn {
+    letter-spacing: 0 !important;
+}
+
+.v-card__title {
+    word-break: unset !important;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+// Typography
+$font-size-base: 0.1rem;
+$line-height-base: 1.6;
+// Colors
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;

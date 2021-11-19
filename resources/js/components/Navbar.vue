@@ -1,5 +1,9 @@
 <template>
-    <v-app-bar flat :height="$vuetify.breakpoint.smAndDown ? 80 : 160">
+    <v-app-bar
+        class="bg-transparent"
+        flat
+        :height="$vuetify.breakpoint.smAndDown ? 80 : 160"
+    >
         <v-container fluid class="pa-0">
             <v-row>
                 <v-container>
@@ -183,7 +187,7 @@
                     </v-row>
                 </v-container>
             </v-row>
-            <v-row class="blue darken-2 d-none d-md-block">
+            <v-row class=" d-none d-md-block">
                 <v-col cols="12">
                     <v-container class="py-0">
                         <v-row>
@@ -199,7 +203,7 @@
                                             name: 'post-category',
                                             params: { slug: category.slug }
                                         }"
-                                        class="white--text"
+                                        class="grey--text"
                                         >{{ category.title }}
                                     </router-link>
                                 </div>

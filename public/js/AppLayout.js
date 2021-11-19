@@ -233,6 +233,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -909,6 +913,7 @@ var render = function() {
   return _c(
     "v-app-bar",
     {
+      staticClass: "bg-transparent",
       attrs: { flat: "", height: _vm.$vuetify.breakpoint.smAndDown ? 80 : 160 }
     },
     [
@@ -1406,7 +1411,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-row",
-            { staticClass: "blue darken-2 d-none d-md-block" },
+            { staticClass: " d-none d-md-block" },
             [
               _c(
                 "v-col",
@@ -1438,7 +1443,7 @@ var render = function() {
                                     _c(
                                       "router-link",
                                       {
-                                        staticClass: "white--text",
+                                        staticClass: "grey--text",
                                         attrs: {
                                           to: {
                                             name: "post-category",
